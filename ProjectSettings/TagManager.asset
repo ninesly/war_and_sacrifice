@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Main Canva
+  - Drop Zone
+  - Player Field
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Cards
-  - 
+  - Player Field
   - 
   - 
   - 

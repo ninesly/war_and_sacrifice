@@ -13,7 +13,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.6290894}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -24,7 +24,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1920, y: 311.8067}
+  m_Size: {x: 1920, y: 60.92395}
   m_EdgeRadius: 0
 --- !u!1001 &1245985445896755937
 PrefabInstance:
@@ -47,7 +47,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5147024321204181134, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_Name
-      value: Drop Zone Variant
+      value: Area_Drop Zone Duel [Variant]
       objectReference: {fileID: 0}
     - target: {fileID: 5147024321204181134, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_Layer
@@ -55,7 +55,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5147024321204181134, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Drop Zone
       objectReference: {fileID: 0}
     - target: {fileID: 7314581842725124563, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_Pivot.x

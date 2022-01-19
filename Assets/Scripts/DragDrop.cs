@@ -10,10 +10,18 @@ public class DragDrop : MonoBehaviour
     Vector2 startPosition;
     bool isOverDropzone;
     bool isDragging = false;
+    public bool isInteractable;
+
+    GameSession gameSession;
 
     private void Awake()
     {
         canvas = GameObject.FindGameObjectWithTag("Main Canva");
+    }
+
+    private void Start()
+    {
+        gameSession = FindObjectOfType<GameSession>();
     }
     void Update()
     {
@@ -27,9 +35,18 @@ public class DragDrop : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        isOverDropzone = true;
-        dropZone = collision.gameObject;
+        Debug.Log("Collision with " + collision.gameObject.tag);
+        if (collision.gameObject.CompareTag("Drop Zone"))
+        {
+            isOverDropzone = true;
+            dropZone = collision.gameObject;
+            isInteractable = false;
+        }
 
+        if (collision.gameObject.CompareTag("Player Field"))
+        {
+            isInteractable = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -42,6 +59,8 @@ public class DragDrop : MonoBehaviour
 
     public void StartDrag()
     {
+        if (!isInteractable) return;
+
         startPosition = transform.position;
         startParent = transform.parent.gameObject;
         isDragging = true;        
@@ -51,11 +70,14 @@ public class DragDrop : MonoBehaviour
     {
         isDragging = false;
         if (isOverDropzone)
-        {
+        { // succesful drag, card changes the place
             transform.SetParent(dropZone.transform, false);
+            transform.localPosition = Vector3.zero;
+            gameSession.AddPlayerCardsInField(-1);
             return;
         }
 
+        //unsuccesful drag, card goes back to original place
         transform.position = startPosition;
         transform.SetParent(startParent.transform, false);
     }

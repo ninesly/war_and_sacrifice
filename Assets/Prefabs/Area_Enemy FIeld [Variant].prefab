@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &721400933845639580
+--- !u!1001 &8879793973218288197
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,19 +9,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2083489535718211934, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.21589127
       objectReference: {fileID: 0}
     - target: {fileID: 2083489535718211934, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.02336241
       objectReference: {fileID: 0}
     - target: {fileID: 2083489535718211934, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_Color.r
-      value: 0.20784314
+      value: 0.23584908
       objectReference: {fileID: 0}
     - target: {fileID: 5147024321204181134, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_Name
-      value: Player Area Variant
+      value: Area_Enemy FIeld [Variant]
       objectReference: {fileID: 0}
     - target: {fileID: 7314581842725124563, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_Pivot.x
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7314581842725124563, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1920
+      value: 725.58
       objectReference: {fileID: 0}
     - target: {fileID: 7314581842725124563, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7314581842725124563, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -384.09662
+      value: 384.1
       objectReference: {fileID: 0}
     - target: {fileID: 7314581842725124563, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
