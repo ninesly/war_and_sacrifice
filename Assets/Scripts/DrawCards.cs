@@ -13,10 +13,12 @@ public class DrawCards : MonoBehaviour
     int cardsToDraw;
 
     GameSession gameSession;
+    Deck deck;
 
     private void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
+        deck = GetComponent<Deck>();
     }
 
     public void OnClick()
@@ -26,11 +28,19 @@ public class DrawCards : MonoBehaviour
 
         for (int i = 0; i < cardsToDraw; i++)
         {
-            GameObject pickedCard = Instantiate(Card, Vector3.zero, Quaternion.identity);
-            pickedCard.transform.SetParent(PlayerArea.transform, false);
+            PickingCard();
         }
 
         gameSession.AddPlayerCardsInField(cardsToDraw);
 
+    }
+
+    private void PickingCard()
+    {
+        Card nextCardFromDeck = deck.GetCardFromDeck();
+
+        GameObject pickedCard = Instantiate(Card, Vector3.zero, Quaternion.identity);
+        pickedCard.transform.SetParent(PlayerArea.transform, false);
+        pickedCard.GetComponent<CardManager>().SetCard(nextCardFromDeck);
     }
 }
