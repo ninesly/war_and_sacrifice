@@ -38,6 +38,11 @@ public class DrawCards : MonoBehaviour
     private void PickingCard()
     {
         Card nextCardFromDeck = deck.GetCardFromDeck();
+        if (!nextCardFromDeck)
+        {
+            Debug.Log("there is no cards in the deck");
+            return;
+        }
 
         GameObject pickedCard = Instantiate(Card, Vector3.zero, Quaternion.identity);
         pickedCard.transform.SetParent(PlayerArea.transform, false);
