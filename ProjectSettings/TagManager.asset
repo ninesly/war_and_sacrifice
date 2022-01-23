@@ -7,6 +7,7 @@ TagManager:
   - Main Canva
   - Drop Zone
   - Player Field
+  - Player Discard Field
   layers:
   - Default
   - TransparentFX

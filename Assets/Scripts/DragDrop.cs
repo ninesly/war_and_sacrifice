@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class DragDrop : MonoBehaviour
     public bool isInteractable;
 
     GameSession gameSession;
+    Card cardSO;
 
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class DragDrop : MonoBehaviour
     private void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
+        cardSO = GetComponent<CardManager>().GetCardSO();
     }
     void Update()
     {
@@ -35,18 +38,24 @@ public class DragDrop : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        Debug.Log("Collision with " + collision.gameObject.tag);
+        //Debug.Log("Collision with " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Drop Zone"))
         {
             isOverDropzone = true;
             dropZone = collision.gameObject;
             isInteractable = false;
-        }
-
-        if (collision.gameObject.CompareTag("Player Field"))
+        } 
+        else if (collision.gameObject.CompareTag("Player Field"))
         {
             isInteractable = true;
-        }
+        } 
+       /* else if (collision.gameObject.CompareTag("Player Discard Field"))
+        {
+            var thisCard = GetComponent<CardManager>().GetCard();
+            collision.gameObject.GetComponent<Discard>().AddToDiscard(thisCard);
+            isInteractable = false;
+        }*/
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -73,13 +82,22 @@ public class DragDrop : MonoBehaviour
         { // succesful drag, card changes the place
             transform.SetParent(dropZone.transform, false);
             transform.localPosition = Vector3.zero;
-            gameSession.AddPlayerCardsInField(-1);
+            AddingCardSOToCantainer();
             return;
         }
 
         //unsuccesful drag, card goes back to original place
         transform.position = startPosition;
         transform.SetParent(startParent.transform, false);
+    }
+
+    private void AddingCardSOToCantainer()
+    {
+        var cardContainer = dropZone.GetComponent<CardContainer>();
+        if (!cardContainer) return;
+
+        cardContainer.AddCardSOToContainer(cardSO);
+        Destroy(gameObject);
     }
 
     public GameObject GetCanvas()

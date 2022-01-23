@@ -8,13 +8,20 @@ public class CardZoom : MonoBehaviour
 
     GameObject canvas;
     GameObject zoomedCard;
+    DragDrop dragDrop;
     RectTransform rect;
 
     bool isClone = false;
 
     void Awake()
-    {        
-        canvas = GetComponent<DragDrop>().GetCanvas();
+    {
+        dragDrop = GetComponent<DragDrop>();
+        if (dragDrop)
+        {
+            canvas = dragDrop.GetCanvas();
+            return;
+        }
+        canvas = GameObject.FindGameObjectWithTag("Main Canva");
     }
 
     public void OnHoverEnter()
@@ -42,5 +49,10 @@ public class CardZoom : MonoBehaviour
     public void SetAsClone()
     {
         isClone = true;
+    }
+
+    private void OnDestroy()
+    {
+        if (zoomedCard) Destroy(zoomedCard);
     }
 }

@@ -1,27 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class Deck : MonoBehaviour
 {
-    [SerializeField] List<Card> cards = new List<Card>();
+    [SerializeField] List<Card> cardsSO = new List<Card>();
 
-    [Header("Cards left in the deck:")]
-    [SerializeField] List<Card> remainingCards = new List<Card>();
+    // [Header("Cards left in the deck:")]
+    //[SerializeField] List<Card> remainingCards = new List<Card>();
 
-    int currentCardIndex = 0;
-    bool isEmpty = false;
+    //int currentCardIndex = 0;
+    // bool isEmpty = false;
 
+    CardContainer cardContainer;
     private void Start()
     {
-        if (cards.Count == 0) isEmpty = true;
+        //if (cards.Count == 0) isEmpty = true;
 
-        for (int cardIndex = 0; cardIndex < cards.Count; cardIndex++)
+        cardContainer = GetComponent<CardContainer>();
+
+        for (int cardIndex = 0; cardIndex < cardsSO.Count; cardIndex++)
         {
-            remainingCards.Add(cards[cardIndex]);
+            cardContainer.AddCardSOToContainer(cardsSO[cardIndex]);
         }
     }
+    /*
     public Card GetCardFromDeck()
     {
         if (isEmpty) return null;
@@ -37,5 +41,5 @@ public class Deck : MonoBehaviour
         }
 
         return currentCard;
-    }
+    }*/
 }

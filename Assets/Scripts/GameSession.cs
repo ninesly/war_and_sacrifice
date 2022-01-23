@@ -4,32 +4,20 @@ using UnityEngine;
 
 public class GameSession : MonoBehaviour
 {
-    [Header("Debug only")]
-    [SerializeField] int playerCardsInField;
-    [SerializeField] int playerSacrificedCards;
-    [SerializeField] int enemyCardsInField;
-    [SerializeField] int enemySacrificedCards;
+    [SerializeField] GameObject playerField;
 
-    public void AddPlayerCardsInField(int amount) => playerCardsInField += amount;
+    int playerCardsInField;
 
     public int GetPlayerCardsInField()
     {
+        playerCardsInField = CountChildren(playerField);
+
         return playerCardsInField;
     }
-
-    public void SetPlayerSacrificedCards(int amount)
+    private int CountChildren(GameObject parentObject)
     {
-        playerSacrificedCards = amount;
-    }
+        var numberOfChildren = parentObject.transform.childCount;
 
-    public void SetEnemyCardsInField(int amount)
-    {
-        enemyCardsInField = amount;
+        return numberOfChildren;
     }
-
-    public void SetEnemySacrificedCards(int amount)
-    {
-        enemySacrificedCards = amount;
-    }
-
 }

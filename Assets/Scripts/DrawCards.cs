@@ -13,31 +13,29 @@ public class DrawCards : MonoBehaviour
     int cardsToDraw;
 
     GameSession gameSession;
-    Deck deck;
+    CardContainer deckCardContainer;
 
     private void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
-        deck = GetComponent<Deck>();
+        deckCardContainer = GetComponent<CardContainer>();
     }
 
     public void OnClick()
     {
         cardsInField = gameSession.GetPlayerCardsInField();
         cardsToDraw = cardInFieldLimit - cardsInField;
+        Debug.Log("Cards to draw: " + cardsToDraw);
 
         for (int i = 0; i < cardsToDraw; i++)
         {
             PickingCard();
         }
-
-        gameSession.AddPlayerCardsInField(cardsToDraw);
-
     }
 
     private void PickingCard()
     {
-        Card nextCardFromDeck = deck.GetCardFromDeck();
+        Card nextCardFromDeck = deckCardContainer.GetCardSOFromContainer();
         if (!nextCardFromDeck)
         {
             Debug.Log("there is no cards in the deck");
@@ -46,6 +44,6 @@ public class DrawCards : MonoBehaviour
 
         GameObject pickedCard = Instantiate(Card, Vector3.zero, Quaternion.identity);
         pickedCard.transform.SetParent(PlayerArea.transform, false);
-        pickedCard.GetComponent<CardManager>().SetCard(nextCardFromDeck);
+        pickedCard.GetComponent<CardManager>().SetCardSO(nextCardFromDeck);
     }
 }
