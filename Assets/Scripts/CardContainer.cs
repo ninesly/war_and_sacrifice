@@ -11,8 +11,8 @@ public class CardContainer : MonoBehaviour
     [SerializeField] bool faceUpCards = false;
 
     bool isEmpty = false;
-   // int currentCardIndex = 0;
-    
+    List<Card> shuffleList = new List<Card>();
+
 
     private void Start()
     {
@@ -82,4 +82,20 @@ public class CardContainer : MonoBehaviour
     {
         return cardsSOInContainer.Count;
     }
+
+    public void ShuffleCardsInContainer()
+    {
+        int original = cardsSOInContainer.Count;
+
+        while (original > 1)
+        {
+            original--;
+            int random = UnityEngine.Random.Range(0, original + 1);
+            Card temp = cardsSOInContainer[random];
+            cardsSOInContainer[random] = cardsSOInContainer[original];
+            cardsSOInContainer[original] = temp;
+        }
+    }   
+
+
 }

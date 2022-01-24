@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1309dc3b8744604d92261ebd6b88658, type: 3}
   m_Name: 5
   m_EditorClassIdentifier: 
-  cardValue: 3
+  cardValue: 5

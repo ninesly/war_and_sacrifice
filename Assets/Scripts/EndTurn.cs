@@ -18,6 +18,7 @@ public class EndTurn : MonoBehaviour
         {
             deckCardContainer.AddCardSOToContainer(allCards[cardIndex]);
         }
+        deckCardContainer.ShuffleCardsInContainer();
         otherCardContainer.RemoveAllCardsSOFromContainer();
     }
 }

@@ -24,6 +24,8 @@ public class Deck : MonoBehaviour
         {
             cardContainer.AddCardSOToContainer(cardsSO[cardIndex]);
         }
+
+        cardContainer.ShuffleCardsInContainer();
     }
     /*
     public Card GetCardFromDeck()
