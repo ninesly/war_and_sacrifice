@@ -4,46 +4,51 @@ using UnityEngine;
 
 public class DrawCards : MonoBehaviour
 {
-    [SerializeField] GameObject PlayerArea;
-    [SerializeField] GameObject EnemyArea;
-    [SerializeField] GameObject Card;
-    [SerializeField] int cardInFieldLimit = 3;
+    [SerializeField] CardContainer sourceCardContainer;
+    [SerializeField] GameObject targetField;
+    [SerializeField] int cardInFieldLimit = 3; // that shouldn't be place to define it, but for now let's leave it like that
+    [SerializeField] GameObject cardTemplate;    
 
     int cardsInField;
     int cardsToDraw;
 
     GameSession gameSession;
-    CardContainer deckCardContainer;
+    
 
     private void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
-        deckCardContainer = GetComponent<CardContainer>();
     }
 
     public void OnClick()
     {
-        cardsInField = gameSession.GetPlayerCardsInField();
+        cardsInField = gameSession.GetCardsInField(targetField);
         cardsToDraw = cardInFieldLimit - cardsInField;
-        Debug.Log("Cards to draw: " + cardsToDraw);
 
-        for (int i = 0; i < cardsToDraw; i++)
+        DrawCardsFromContainer(cardsToDraw);
+    }
+
+    public void DrawCardsFromContainer(int amount)
+    {
+        for (int cardToPick = 0; cardToPick < amount; cardToPick++)
         {
-            PickingCard();
+            Card nextCardSO = sourceCardContainer.GetCardSOFromContainer();
+            if (!nextCardSO)
+            {
+                Debug.Log("there is no cards in the container " + sourceCardContainer.name);
+                return;
+            }
+
+            CreateCardObject(nextCardSO);
         }
     }
 
-    private void PickingCard()
+    private void CreateCardObject(Card cardSOToCreate)
     {
-        Card nextCardFromDeck = deckCardContainer.GetCardSOFromContainer();
-        if (!nextCardFromDeck)
-        {
-            Debug.Log("there is no cards in the deck");
-            return;
-        }
+        GameObject newCard = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity);
+        newCard.transform.SetParent(targetField.transform, false);
 
-        GameObject pickedCard = Instantiate(Card, Vector3.zero, Quaternion.identity);
-        pickedCard.transform.SetParent(PlayerArea.transform, false);
-        pickedCard.GetComponent<CardManager>().SetCardSO(nextCardFromDeck);
+        // tie card object to scriptable object
+        newCard.GetComponent<CardManager>().SetCardSO(cardSOToCreate);
     }
 }

@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class GameSession : MonoBehaviour
 {
-    [SerializeField] GameObject playerField;
+    [SerializeField] List<GameObject> fieldsList = new List<GameObject>();
+    int cardsInField;
+    
 
-    int playerCardsInField;
-
-    public int GetPlayerCardsInField()
+    public int GetCardsInField(GameObject targetField)
     {
-        playerCardsInField = CountChildren(playerField);
+        foreach(GameObject field in fieldsList)
+        {
+            if (targetField == field)
+            {
+                cardsInField = CountChildren(targetField);
+                return cardsInField;
+            }
+        }
 
-        return playerCardsInField;
+        return 0;
     }
     private int CountChildren(GameObject parentObject)
     {
