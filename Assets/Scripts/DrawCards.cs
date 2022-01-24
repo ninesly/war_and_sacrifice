@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class DrawCards : MonoBehaviour
 {
-    [SerializeField] CardContainer sourceCardContainer;
+    [SerializeField] CardContainer originCardContainer;
     [SerializeField] GameObject targetField;
+    [SerializeField] bool takeCardsFromDiscardIfEmpty = false;
+    [SerializeField] CardContainer discardCardContainer;
     [SerializeField] int cardInFieldLimit = 3; // that shouldn't be place to define it, but for now let's leave it like that
-    [SerializeField] GameObject cardTemplate;    
-
+    [SerializeField] GameObject cardTemplate;
+    
     int cardsInField;
     int cardsToDraw;
 
     GameSession gameSession;
+    Croupier croupier;
     
 
     private void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
+        croupier = GetComponent<Croupier>();
     }
 
     public void OnClick()
@@ -32,11 +36,25 @@ public class DrawCards : MonoBehaviour
     {
         for (int cardToPick = 0; cardToPick < amount; cardToPick++)
         {
-            Card nextCardSO = sourceCardContainer.GetCardSOFromContainer();
+            Card nextCardSO = originCardContainer.GetCardSOFromContainer();
+
             if (!nextCardSO)
             {
-                Debug.Log("There is no cards in the container " + sourceCardContainer.name);
-                return;
+                Debug.Log("There is no cards in the container " + originCardContainer.name);
+
+                if (takeCardsFromDiscardIfEmpty)
+                {
+                    Debug.Log("Shuffle cards from discard");
+                    croupier.ShuffleAllBackToContainer(discardCardContainer, originCardContainer);
+                    nextCardSO = originCardContainer.GetCardSOFromContainer();
+
+                    if (!nextCardSO)
+                    {
+                        Debug.Log("There is no cards neither in the container " + originCardContainer.name + "nor discard pile.");
+                        return;
+                    }
+                }
+                else return;
             }
 
             CreateCardObject(nextCardSO);

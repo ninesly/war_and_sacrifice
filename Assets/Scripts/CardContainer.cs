@@ -11,8 +11,6 @@ public class CardContainer : MonoBehaviour
     [SerializeField] bool faceUpCards = false;
 
     bool isEmpty = false;
-    List<Card> shuffleList = new List<Card>();
-
 
     private void Start()
     {

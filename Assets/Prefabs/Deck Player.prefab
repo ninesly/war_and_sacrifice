@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 4145506425999326894}
   - component: {fileID: 2163281939503050859}
   - component: {fileID: 4533955221174172055}
-  - component: {fileID: 8551199376758790608}
   - component: {fileID: 7533433687158548124}
   - component: {fileID: 1371476308881664771}
+  - component: {fileID: 8551199376758790608}
   - component: {fileID: -4682405195746443082}
+  - component: {fileID: -335275369864224253}
   m_Layer: 6
   m_Name: Deck Player
   m_TagString: Untagged
@@ -80,22 +81,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8551199376758790608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5119993865793361330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f1a3fc4a7fee67478046231ee6dc20d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerArea: {fileID: 0}
-  EnemyArea: {fileID: 0}
-  Card: {fileID: 7533433686143982113, guid: c693ad423dfee5d42883077682cf95ad, type: 3}
-  cardInFieldLimit: 3
 --- !u!114 &7533433687158548124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +150,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsSO: []
+--- !u!114 &8551199376758790608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5119993865793361330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a3fc4a7fee67478046231ee6dc20d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originCardContainer: {fileID: 0}
+  targetField: {fileID: 0}
+  takeCardsFromDiscardIfEmpty: 0
+  cardInFieldLimit: 3
+  cardTemplate: {fileID: 0}
 --- !u!114 &-4682405195746443082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +181,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsSOInContainer: []
   coverImage: {fileID: 553026713416010643}
+  faceUpCards: 0
+--- !u!114 &-335275369864224253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5119993865793361330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5a5aa79b283bb4c88d37e58d598084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originCardContainer: {fileID: 0}
+  targetCardContainer: {fileID: 0}
 --- !u!1 &7258372955031154338
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8113208, g: 0.79895294, b: 0.46306515, a: 1}
+  m_Color: {r: 0.56, g: 0.4861084, b: 0.31922704, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
