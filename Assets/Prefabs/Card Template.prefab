@@ -228,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25911a51125cac34f9c896d06eadad27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlightColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
   isInteractable: 0
 --- !u!114 &-8152092621380656263
 MonoBehaviour:
@@ -378,4 +379,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a722c0024035648be3a0ebd8e0db6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  cardSO: {fileID: 0}

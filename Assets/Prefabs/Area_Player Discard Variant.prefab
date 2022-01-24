@@ -266,6 +266,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6222336800783823987, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
+      propertyPath: m_Size.x
+      value: 175.92432
+      objectReference: {fileID: 0}
+    - target: {fileID: 6222336800783823987, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.77197266
+      objectReference: {fileID: 0}
     - target: {fileID: 6362607876594332214, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
       propertyPath: m_Name
       value: Area_Player Discard Variant

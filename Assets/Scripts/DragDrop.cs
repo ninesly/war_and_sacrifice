@@ -2,9 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DragDrop : MonoBehaviour
 {
+    [SerializeField] Color highlightColor;
+    Color defaultColor;
+
     GameObject canvas;
     GameObject startParent;
     GameObject dropZone;
@@ -44,6 +48,8 @@ public class DragDrop : MonoBehaviour
             isOverDropzone = true;
             dropZone = collision.gameObject;
             isInteractable = false;
+            defaultColor = collision.gameObject.GetComponent<Image>().color;
+            collision.gameObject.GetComponent<Image>().color = highlightColor;
         } 
         else if (collision.gameObject.CompareTag("Player Field"))
         {
@@ -60,10 +66,9 @@ public class DragDrop : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-
+        if(isOverDropzone) collision.gameObject.GetComponent<Image>().color = defaultColor;
         isOverDropzone = false;
-        dropZone = null;
-
+        dropZone = null;        
     }
 
     public void StartDrag()
