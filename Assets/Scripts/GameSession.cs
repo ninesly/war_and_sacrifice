@@ -18,7 +18,7 @@ public class GameSession : MonoBehaviour
                 return cardsInField;
             }
         }
-
+        Debug.LogWarning("There is no matching field!");
         return 0;
     }
     private int CountChildren(GameObject parentObject)

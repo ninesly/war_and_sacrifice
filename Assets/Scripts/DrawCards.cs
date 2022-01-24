@@ -35,7 +35,7 @@ public class DrawCards : MonoBehaviour
             Card nextCardSO = sourceCardContainer.GetCardSOFromContainer();
             if (!nextCardSO)
             {
-                Debug.Log("there is no cards in the container " + sourceCardContainer.name);
+                Debug.Log("There is no cards in the container " + sourceCardContainer.name);
                 return;
             }
 

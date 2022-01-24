@@ -11,7 +11,7 @@ public class CardContainer : MonoBehaviour
     [SerializeField] bool faceUpCards = false;
 
     bool isEmpty = false;
-    int currentCardIndex = 0;
+   // int currentCardIndex = 0;
     
 
     private void Start()
@@ -65,11 +65,9 @@ public class CardContainer : MonoBehaviour
     public Card GetCardSOFromContainer()
     {
         if (isEmpty) return null;
-
-        var currentCardSO = cardsSOInContainer[currentCardIndex];
-        cardsSOInContainer.RemoveAt(currentCardIndex);
-        currentCardIndex++;
-        if (currentCardIndex >= cardsSOInContainer.Count) currentCardIndex = 0;
+        
+        var currentCardSO = cardsSOInContainer[0]; // 0 is "upper" card
+        cardsSOInContainer.RemoveAt(0);
         CheckIfEmpty();
 
         return currentCardSO;
