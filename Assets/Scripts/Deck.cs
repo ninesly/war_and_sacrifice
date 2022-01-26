@@ -6,6 +6,7 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     [SerializeField] List<Card> cardsSO = new List<Card>();
+    [SerializeField] Card.Users user;
 
     CardContainer cardContainer;
 
@@ -20,6 +21,7 @@ public class Deck : MonoBehaviour
     {
         for (int cardIndex = 0; cardIndex < cardsSO.Count; cardIndex++)
         {
+            cardsSO[cardIndex].SetUser(user);
             cardContainer.AddCardSOToContainer(cardsSO[cardIndex]);
         }
 

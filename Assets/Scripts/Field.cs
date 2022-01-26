@@ -3,13 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CountCardsInField : MonoBehaviour
+public class Field : MonoBehaviour
 {
-    enum Users { Player, Enemy };
-
     [Tooltip("0 for no limit")]
     [SerializeField] int cardsLimitPerUser;
-    [SerializeField] Users userType;
+    [SerializeField] Card.Users userType;
     int numberOfChildren;
 
 

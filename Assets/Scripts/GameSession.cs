@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class GameSession : MonoBehaviour
 {
-    [SerializeField] List<GameObject> fieldsList = new List<GameObject>();
+    [Header("Debug Only")]
+    [SerializeField] Field[] fieldArray;
     int cardsInField;
-    
 
-    public int GetCardsInField(GameObject targetField)
+    private void Start()
     {
-        foreach(GameObject field in fieldsList)
+        fieldArray = FindObjectsOfType<Field>();
+    }
+    public int GetCardsInField(Field targetField)
+    {
+        foreach(Field field in fieldArray)
         {
             if (targetField == field)
             {
@@ -21,7 +25,7 @@ public class GameSession : MonoBehaviour
         Debug.LogWarning("There is no matching field!");
         return 0;
     }
-    private int CountChildren(GameObject parentObject)
+    private int CountChildren(Field parentObject)
     {
         var numberOfChildren = parentObject.transform.childCount;
 

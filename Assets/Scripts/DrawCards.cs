@@ -5,11 +5,11 @@ using UnityEngine;
 public class DrawCards : MonoBehaviour
 {
     [SerializeField] CardContainer originCardContainer;
-    [SerializeField] GameObject targetField;
+    [SerializeField] Field targetField;
     [SerializeField] bool takeCardsFromDiscardIfEmpty = false;
     [SerializeField] CardContainer discardCardContainer;
     [SerializeField] int cardInFieldLimit = 3; // that shouldn't be place to define it, but for now let's leave it like that
-    [SerializeField] GameObject cardTemplate;
+    [SerializeField] CardManager cardTemplate;
     
     int cardsInField;
     int cardsToDraw;
@@ -63,7 +63,7 @@ public class DrawCards : MonoBehaviour
 
     private void CreateCardObject(Card cardSOToCreate)
     {
-        GameObject newCard = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity);
+        var newCard = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity);
         newCard.transform.SetParent(targetField.transform, false);
 
         // tie card object to scriptable object

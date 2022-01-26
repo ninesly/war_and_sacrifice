@@ -105,7 +105,7 @@ public class DragDrop : MonoBehaviour
             return;
         }
 
-        isOccupied = dropZone.gameObject.GetComponent<CountCardsInField>().CheckIfFieldLimitReached();
+        isOccupied = dropZone.gameObject.GetComponent<Field>().CheckIfFieldLimitReached();
 
         if (isOccupied)
         {
