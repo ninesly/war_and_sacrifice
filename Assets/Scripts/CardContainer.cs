@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CardContainer : MonoBehaviour
 {
+    [SerializeField] GameSession.Users user;
     [SerializeField] List<Card> cardsSOInContainer = new List<Card>();
     [SerializeField] Image coverImage;
     [SerializeField] bool faceUpCards = false;
@@ -38,7 +39,7 @@ public class CardContainer : MonoBehaviour
         if (faceUpCards)
         {
             var lastElement = cardsSOInContainer.Count-1;
-            coverImage.GetComponent<CardManager>().SetCardSO(cardsSOInContainer[lastElement]);
+            coverImage.GetComponent<CardManager>().SetCardSO(cardsSOInContainer[lastElement], user);
         }   
     }
 

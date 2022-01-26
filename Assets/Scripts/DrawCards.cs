@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DrawCards : MonoBehaviour
 {
+    [SerializeField] GameSession.Users user;
     [SerializeField] CardContainer originCardContainer;
     [SerializeField] Field targetField;
     [SerializeField] bool takeCardsFromDiscardIfEmpty = false;
@@ -34,6 +35,8 @@ public class DrawCards : MonoBehaviour
 
     public void DrawCardsFromContainer(int amount)
     {
+        if (gameSession.GetActualUser() != user) return;
+
         for (int cardToPick = 0; cardToPick < amount; cardToPick++)
         {
             Card nextCardSO = originCardContainer.GetCardSOFromContainer();
@@ -67,6 +70,6 @@ public class DrawCards : MonoBehaviour
         newCard.transform.SetParent(targetField.transform, false);
 
         // tie card object to scriptable object
-        newCard.GetComponent<CardManager>().SetCardSO(cardSOToCreate);
+        newCard.GetComponent<CardManager>().SetCardSO(cardSOToCreate, user);
     }
 }

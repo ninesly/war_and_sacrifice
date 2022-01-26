@@ -6,6 +6,8 @@ using TMPro;
 public class CardManager : MonoBehaviour
 {
     [SerializeField] Card cardSO;
+    [Header("Debug Only")]
+    [SerializeField] GameSession.Users user;
 
     TMP_Text cardText;
 
@@ -23,7 +25,7 @@ public class CardManager : MonoBehaviour
         cardText.text = cardSO.cardValue.ToString();
     }
 
-    public void SetCardSO(Card newCard)
+    public void SetCardSO(Card newCard, GameSession.Users user)
     {
         cardSO = newCard;
         SetCardText();
@@ -33,5 +35,10 @@ public class CardManager : MonoBehaviour
     public Card GetCardSO()
     {
         return cardSO;
+    }
+
+    public GameSession.Users GetUserOfCard()
+    {
+        return user;
     }
 }

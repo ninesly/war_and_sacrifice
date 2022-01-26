@@ -12,14 +12,16 @@ public class DragDrop : MonoBehaviour
     GameObject canvas;
     GameObject startParent;
     GameObject dropZone;
+    Card cardSO;
+    GameSession.Users user;
 
     Vector2 startPosition;
 
-    bool isDragging = false;
+    public bool isDragging = false;
     bool isOccupied = false;  
 
     GameSession gameSession;
-    Card cardSO;
+    
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class DragDrop : MonoBehaviour
     {
         gameSession = FindObjectOfType<GameSession>();
         cardSO = GetComponent<CardManager>().GetCardSO();
+        user = GetComponent<CardManager>().GetUserOfCard();
     }
 
     void Update()
@@ -88,7 +91,9 @@ public class DragDrop : MonoBehaviour
     // -------------------------------------------------------------------------------------------------- PUBLIC METHODS
 
     public void StartDrag() // by Event Trigger
-    {   
+    {
+        if (gameSession.GetActualUser() != user) return;
+
         startPosition = transform.position;
         startParent = transform.parent.gameObject;
         isDragging = true;        
@@ -96,6 +101,8 @@ public class DragDrop : MonoBehaviour
 
     public void StopDrag() // by Event Trigger
     {
+        if (gameSession.GetActualUser() != user) return;
+
         isDragging = false;     
 
         if (!dropZone)

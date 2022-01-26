@@ -6,6 +6,7 @@ public class GameSession : MonoBehaviour
 {
     public enum Users { Player, Enemy };
 
+    [SerializeField] ButtonManager buttonManager;
     [SerializeField] Users startingUser;
     [Tooltip("If true, it will override 'startingUser' selection")]
     [SerializeField] bool randomStartingUser;
@@ -19,13 +20,13 @@ public class GameSession : MonoBehaviour
 
     int cardsInField;
 
-    private void Start()
+    void Start()
     {
         fieldArray = FindObjectsOfType<Field>();
         StartGame();
     }
 
-    private void StartGame()
+    void StartGame()
     {
         if (randomStartingUser)
         {
@@ -36,7 +37,7 @@ public class GameSession : MonoBehaviour
         TurnCounter(whoIsPlaying);
     }
 
-    private void TurnCounter(Users actualUser)
+    void TurnCounter(Users actualUser)
     {
         if ((int)actualUser == 0)
         {
@@ -47,12 +48,25 @@ public class GameSession : MonoBehaviour
         enemyTurn++;
     }
 
+    public Users GetActualUser()
+    {
+        return whoIsPlaying;
+    }
+
+
     public void NextPlayer()
     {
         var nextPlayer_Int = (int)whoIsPlaying + 1;
         if (nextPlayer_Int >= numberOfPlayer) nextPlayer_Int = 0;
         whoIsPlaying = (Users)nextPlayer_Int;
         TurnCounter(whoIsPlaying);
+
+        if (whoIsPlaying == Users.Player)
+        {
+            buttonManager.SetButtons(true);
+            return;
+        }
+        buttonManager.SetButtons(false);
     }
 
     public int GetCardsInField(Field targetField)
@@ -68,7 +82,7 @@ public class GameSession : MonoBehaviour
         Debug.LogWarning("There is no matching field!");
         return 0;
     }
-    private int CountChildren(Field parentObject)
+    int CountChildren(Field parentObject)
     {
         var numberOfChildren = parentObject.transform.childCount;
 

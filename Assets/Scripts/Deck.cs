@@ -21,7 +21,6 @@ public class Deck : MonoBehaviour
     {
         for (int cardIndex = 0; cardIndex < cardsSO.Count; cardIndex++)
         {
-            cardsSO[cardIndex].SetUser(user);
             cardContainer.AddCardSOToContainer(cardsSO[cardIndex]);
         }
 
