@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 3.0344238
       objectReference: {fileID: 0}
+    - target: {fileID: 7288627257300469279, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
+      propertyPath: cardsLimitPerUser
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8415042183037231922, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

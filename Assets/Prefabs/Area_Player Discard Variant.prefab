@@ -134,6 +134,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1700683350813424406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424150244024000689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef37e51d55ecc4040ac5a7650ceaa6c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardsSOInContainer: []
+  coverImage: {fileID: 4314935706857257462}
+  faceUpCards: 1
 --- !u!1 &4757978388855510483
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,21 +239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSO: {fileID: 0}
---- !u!114 &1700683350813424406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3424150244024000689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef37e51d55ecc4040ac5a7650ceaa6c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardsSOInContainer: []
-  coverImage: {fileID: 4314935706857257462}
-  faceUpCards: 1
 --- !u!1001 &8631571613183103623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -281,6 +281,10 @@ PrefabInstance:
     - target: {fileID: 6362607876594332214, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
       propertyPath: m_TagString
       value: Drop Zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732020339169719878, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
+      propertyPath: cardsLimitPerUser
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8837184040052003691, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
       propertyPath: m_Pivot.x

@@ -11,11 +11,15 @@ public class DragDrop : MonoBehaviour
 
     GameObject canvas;
     GameObject startParent;
-    GameObject dropZone;
+    public GameObject dropZone;
+
     Vector2 startPosition;
-    bool isOverDropzone;
+
+    bool isOverDropzone = false;
     bool isDragging = false;
-    public bool isInteractable;
+    bool isOccupied = false;
+    bool isInteractable;
+  
 
     GameSession gameSession;
     Card cardSO;
@@ -30,6 +34,7 @@ public class DragDrop : MonoBehaviour
         gameSession = FindObjectOfType<GameSession>();
         cardSO = GetComponent<CardManager>().GetCardSO();
     }
+
     void Update()
     {
         if (isDragging)
@@ -41,59 +46,31 @@ public class DragDrop : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        //Debug.Log("Collision with " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Drop Zone"))
         {
+            //isInteractable = true;
             isOverDropzone = true;
             dropZone = collision.gameObject;
-            isInteractable = false;
-            defaultColor = collision.gameObject.GetComponent<Image>().color;
-            collision.gameObject.GetComponent<Image>().color = highlightColor;
-        } 
-        else if (collision.gameObject.CompareTag("Player Field"))
-        {
-            isInteractable = true;
-        } 
-       /* else if (collision.gameObject.CompareTag("Player Discard Field"))
-        {
-            var thisCard = GetComponent<CardManager>().GetCard();
-            collision.gameObject.GetComponent<Discard>().AddToDiscard(thisCard);
-            isInteractable = false;
-        }*/
-
+            ShowHighlight(collision);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if(isOverDropzone) collision.gameObject.GetComponent<Image>().color = defaultColor;
+        if (isOverDropzone) HideHighlight(collision);
         isOverDropzone = false;
-        dropZone = null;        
+        dropZone = null;
     }
 
-    public void StartDrag()
+    private void ShowHighlight(Collision2D collision)
     {
-        if (!isInteractable) return;
-
-        startPosition = transform.position;
-        startParent = transform.parent.gameObject;
-        isDragging = true;        
+        defaultColor = collision.gameObject.GetComponent<Image>().color;
+        collision.gameObject.GetComponent<Image>().color = highlightColor;
     }
 
-    public void StopDrag()
+    private void HideHighlight(Collision2D collision)
     {
-        isDragging = false;
-        if (isOverDropzone)
-        { // succesful drag, card changes the place
-            transform.SetParent(dropZone.transform, false);
-            transform.localPosition = Vector3.zero;
-            AddingCardSOToCantainer();
-            return;
-        }
-
-        //unsuccesful drag, card goes back to original place
-        transform.position = startPosition;
-        transform.SetParent(startParent.transform, false);
+        collision.gameObject.GetComponent<Image>().color = defaultColor;
     }
 
     private void AddingCardSOToCantainer()
@@ -103,6 +80,47 @@ public class DragDrop : MonoBehaviour
 
         cardContainer.AddCardSOToContainer(cardSO);
         Destroy(gameObject);
+    }
+
+    // -------------------------------------------------------------------------------------------------- PUBLIC METHODS
+
+    public void StartDrag() // by Event Trigger
+    {
+        //if (!isInteractable) return;
+
+        startPosition = transform.position;
+        startParent = transform.parent.gameObject;
+        isDragging = true;        
+    }
+
+    public void StopDrag() // by Event Trigger
+    {
+        isDragging = false;
+        isOccupied = dropZone.gameObject.GetComponent<CountCardsInField>().CheckIfFieldLimitReached();
+
+
+        if (isOverDropzone && !isOccupied)
+        {
+            // succesful drag
+            ChangePlaceOfCard();
+            return;
+        }
+
+        //unsuccesful drag
+        TakeCardBack();
+    }
+
+    private void TakeCardBack()
+    {
+        transform.position = startPosition;
+        transform.SetParent(startParent.transform, false);
+    }
+
+    private void ChangePlaceOfCard()
+    {
+        transform.SetParent(dropZone.transform, false);
+        transform.localPosition = Vector3.zero;
+        AddingCardSOToCantainer();
     }
 
     public GameObject GetCanvas()
