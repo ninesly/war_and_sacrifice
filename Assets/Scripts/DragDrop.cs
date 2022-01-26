@@ -16,9 +16,7 @@ public class DragDrop : MonoBehaviour
     Vector2 startPosition;
 
     bool isDragging = false;
-    bool isOccupied = false;
-
-  
+    bool isOccupied = false;  
 
     GameSession gameSession;
     Card cardSO;
