@@ -43,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe6f516e6ce3f841817474f46786a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldsList:
-  - {fileID: 0}
-  - {fileID: 0}
+  startingUser: 0
+  randomStartingUser: 0
+  numberOfPlayer: 2
+  fieldArray: []
+  playerTurn: 0
+  enemyTurn: 0
+  whoIsPlaying: 0

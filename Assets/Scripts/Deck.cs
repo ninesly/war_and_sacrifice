@@ -6,7 +6,7 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     [SerializeField] List<Card> cardsSO = new List<Card>();
-    [SerializeField] Card.Users user;
+    [SerializeField] GameSession.Users user;
 
     CardContainer cardContainer;
 

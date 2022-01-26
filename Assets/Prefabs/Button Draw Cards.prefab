@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6106024028968469125}
   - component: {fileID: 6106024028968469126}
   m_Layer: 5
-  m_Name: Draw Cards Button
+  m_Name: Button Draw Cards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
