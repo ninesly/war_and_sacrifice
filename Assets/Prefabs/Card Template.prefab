@@ -228,8 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25911a51125cac34f9c896d06eadad27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
-  isInteractable: 0
+  colorValueModificator: -0.06
 --- !u!114 &-8152092621380656263
 MonoBehaviour:
   m_ObjectHideFlags: 0

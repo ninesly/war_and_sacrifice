@@ -6,19 +6,18 @@ using UnityEngine.UI;
 
 public class DragDrop : MonoBehaviour
 {
-    [SerializeField] Color highlightColor;
+    [SerializeField][Range(-1f, 1f)] float colorValueModificator = -0.06f;
     Color defaultColor;
 
     GameObject canvas;
     GameObject startParent;
-    public GameObject dropZone;
+    GameObject dropZone;
 
     Vector2 startPosition;
 
-    bool isOverDropzone = false;
     bool isDragging = false;
     bool isOccupied = false;
-    bool isInteractable;
+
   
 
     GameSession gameSession;
@@ -46,31 +45,37 @@ public class DragDrop : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Drop Zone"))
+        if (collision.gameObject.CompareTag("Drop Zone") && isDragging)
         {
-            //isInteractable = true;
-            isOverDropzone = true;
             dropZone = collision.gameObject;
-            ShowHighlight(collision);
+            ShowHighlight(dropZone);
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (isOverDropzone) HideHighlight(collision);
-        isOverDropzone = false;
+        HideHighlight(dropZone);
         dropZone = null;
     }
 
-    private void ShowHighlight(Collision2D collision)
+    private void ShowHighlight(GameObject dropZone)
     {
-        defaultColor = collision.gameObject.GetComponent<Image>().color;
-        collision.gameObject.GetComponent<Image>().color = highlightColor;
+        if (!dropZone) return;
+
+        defaultColor = dropZone.GetComponent<Image>().color;
+
+        float h, s, v; 
+        Color.RGBToHSV(defaultColor, out h, out s, out v);
+        v += colorValueModificator;
+
+        dropZone.GetComponent<Image>().color = Color.HSVToRGB(h, s, v);
     }
 
-    private void HideHighlight(Collision2D collision)
+    private void HideHighlight(GameObject dropZone)
     {
-        collision.gameObject.GetComponent<Image>().color = defaultColor;
+        if (!dropZone) return;
+
+        dropZone.GetComponent<Image>().color = defaultColor;
     }
 
     private void AddingCardSOToCantainer()
@@ -85,9 +90,7 @@ public class DragDrop : MonoBehaviour
     // -------------------------------------------------------------------------------------------------- PUBLIC METHODS
 
     public void StartDrag() // by Event Trigger
-    {
-        //if (!isInteractable) return;
-
+    {   
         startPosition = transform.position;
         startParent = transform.parent.gameObject;
         isDragging = true;        
@@ -95,19 +98,27 @@ public class DragDrop : MonoBehaviour
 
     public void StopDrag() // by Event Trigger
     {
-        isDragging = false;
-        isOccupied = dropZone.gameObject.GetComponent<CountCardsInField>().CheckIfFieldLimitReached();
+        isDragging = false;     
 
-
-        if (isOverDropzone && !isOccupied)
+        if (!dropZone)
         {
-            // succesful drag
-            ChangePlaceOfCard();
+            //unsuccesful 1
+            TakeCardBack();
             return;
         }
 
-        //unsuccesful drag
-        TakeCardBack();
+        isOccupied = dropZone.gameObject.GetComponent<CountCardsInField>().CheckIfFieldLimitReached();
+
+        if (isOccupied)
+        {
+            //unsuccesful 2
+            TakeCardBack();
+            return;
+        }
+
+        // succesful 
+        ChangePlaceOfCard();
+        HideHighlight(dropZone);
     }
 
     private void TakeCardBack()

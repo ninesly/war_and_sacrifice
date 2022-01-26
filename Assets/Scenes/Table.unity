@@ -235,10 +235,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Field
       objectReference: {fileID: 0}
-    - target: {fileID: 5579688403385645330, guid: c3ae1901dfe62014ab17205f0859e32b, type: 3}
-      propertyPath: m_TagString
-      value: Player Field
-      objectReference: {fileID: 0}
     - target: {fileID: 8034548442177345615, guid: c3ae1901dfe62014ab17205f0859e32b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -396,6 +392,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &282577249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8551199376758790608, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
+  m_PrefabInstance: {fileID: 3423295699079476009}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a3fc4a7fee67478046231ee6dc20d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,17 +660,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
---- !u!114 &847791710 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -335275369864224253, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
-  m_PrefabInstance: {fileID: 3423295699079476009}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df5a5aa79b283bb4c88d37e58d598084, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &957628970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1654,7 +1650,15 @@ PrefabInstance:
     - target: {fileID: 6106024028968469126, guid: b5b1bef3f34fa2a4e9c8119ae84cb5d7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 847791710}
+      objectReference: {fileID: 282577249}
+    - target: {fileID: 6106024028968469126, guid: b5b1bef3f34fa2a4e9c8119ae84cb5d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106024028968469126, guid: b5b1bef3f34fa2a4e9c8119ae84cb5d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DrawCards, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5b1bef3f34fa2a4e9c8119ae84cb5d7, type: 3}
 --- !u!1001 &8631571611289730757
