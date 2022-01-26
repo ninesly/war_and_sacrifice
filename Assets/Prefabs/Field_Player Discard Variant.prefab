@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef37e51d55ecc4040ac5a7650ceaa6c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  user: 0
   cardsSOInContainer: []
   coverImage: {fileID: 4314935706857257462}
   faceUpCards: 1
@@ -239,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSO: {fileID: 0}
+  user: 0
 --- !u!1001 &8631571613183103623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -276,11 +278,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6362607876594332214, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
       propertyPath: m_Name
-      value: Area_Player Discard Variant
+      value: Field_Player Discard Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6362607876594332214, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
       propertyPath: m_TagString
       value: Drop Zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7732020339169719878, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
+      propertyPath: cardsLimit
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7732020339169719878, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
       propertyPath: cardsLimitPerUser

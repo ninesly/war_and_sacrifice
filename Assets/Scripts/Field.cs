@@ -6,7 +6,7 @@ using UnityEngine;
 public class Field : MonoBehaviour
 {
     [Tooltip("0 for no limit")]
-    [SerializeField] int cardsLimitPerUser;
+    [SerializeField] int cardsLimit;
 
     int numberOfChildren;
 
@@ -14,15 +14,20 @@ public class Field : MonoBehaviour
 
     public bool CheckIfFieldLimitReached()
     {
-        if (cardsLimitPerUser == 0) return false;
+        if (cardsLimit == 0) return false;
 
         numberOfChildren = transform.childCount;
-        if (numberOfChildren >= cardsLimitPerUser)
+        if (numberOfChildren >= cardsLimit)
         {
             return true;
         }
 
         return false;
-
     }
+
+    public int GetCardsCardsLimit()
+    {
+        return cardsLimit;
+    }
+
 }

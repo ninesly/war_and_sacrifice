@@ -9,10 +9,8 @@ public class DrawCards : MonoBehaviour
     [SerializeField] Field targetField;
     [SerializeField] bool takeCardsFromDiscardIfEmpty = false;
     [SerializeField] CardContainer discardCardContainer;
-    [SerializeField] int cardInFieldLimit = 3; // that shouldn't be place to define it, but for now let's leave it like that
     [SerializeField] CardManager cardTemplate;
-    
-    int cardsInField;
+
     int cardsToDraw;
 
     GameSession gameSession;
@@ -27,8 +25,9 @@ public class DrawCards : MonoBehaviour
 
     public void OnClick()
     {
-        cardsInField = gameSession.GetCardsInField(targetField);
-        cardsToDraw = cardInFieldLimit - cardsInField;
+        var cardsInField = gameSession.GetCardsInField(targetField);
+        var cardsInFieldLimit = targetField.GetCardsCardsLimit();
+        cardsToDraw = cardsInFieldLimit - cardsInField;
 
         DrawCardsFromContainer(cardsToDraw);
     }

@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6208008061463839343, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
       propertyPath: m_Name
-      value: Area_Drop Zone Duel_1 card  [Variant^2]
+      value: Field_Drop Zone Narrow  [Variant^2]
       objectReference: {fileID: 0}
     - target: {fileID: 6355122291489031210, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
       propertyPath: m_Size.x
@@ -22,6 +22,10 @@ PrefabInstance:
     - target: {fileID: 6355122291489031210, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
       propertyPath: m_Offset.x
       value: 3.0344238
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288627257300469279, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
+      propertyPath: cardsLimit
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7288627257300469279, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
       propertyPath: cardsLimitPerUser

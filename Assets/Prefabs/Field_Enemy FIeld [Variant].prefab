@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5147024321204181134, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_Name
-      value: Area_Enemy FIeld [Variant]
+      value: Field_Enemy FIeld [Variant]
       objectReference: {fileID: 0}
     - target: {fileID: 7314581842725124563, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_Pivot.x
@@ -106,6 +106,10 @@ PrefabInstance:
     - target: {fileID: 7314581842725124563, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389298969815309566, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
+      propertyPath: cardsLimit
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}

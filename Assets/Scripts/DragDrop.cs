@@ -79,7 +79,7 @@ public class DragDrop : MonoBehaviour
         dropZone.GetComponent<Image>().color = defaultColor;
     }
 
-    private void AddingCardSOToCantainer()
+    private void AddingCardSOToCantainer(GameObject dropZone)
     {
         var cardContainer = dropZone.GetComponent<CardContainer>();
         if (!cardContainer) return;
@@ -122,7 +122,7 @@ public class DragDrop : MonoBehaviour
         }
 
         // succesful 
-        ChangePlaceOfCard();
+        ChangePlaceOfCard(dropZone);
         HideHighlight(dropZone);
     }
 
@@ -132,11 +132,11 @@ public class DragDrop : MonoBehaviour
         transform.SetParent(startParent.transform, false);
     }
 
-    private void ChangePlaceOfCard()
+    public void ChangePlaceOfCard(GameObject dropZone)
     {
         transform.SetParent(dropZone.transform, false);
         transform.localPosition = Vector3.zero;
-        AddingCardSOToCantainer();
+        AddingCardSOToCantainer(dropZone);
     }
 
     public GameObject GetCanvas()
