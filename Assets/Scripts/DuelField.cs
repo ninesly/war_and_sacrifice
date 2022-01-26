@@ -1,33 +1,29 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI : MonoBehaviour
+public class DuelField : MonoBehaviour
 {
     [SerializeField] GameSession.Users user;
-    [SerializeField] bool isAlive = true;
-
     GameSession gameSession;
-
-    bool isMyTurn = false;
+    ButtonManager buttonManager;
+    Field field;
 
     void Start()
     {
-        gameObject.SetActive(isAlive);
         gameSession = FindObjectOfType<GameSession>();
+        buttonManager = gameSession.GetComponent<ButtonManager>();
+        field = GetComponent<Field>();
     }
 
     private void Update()
     {
-        Act();
+        CheckIfFighterIsChosen();
     }
 
-    private void Act()
+    void CheckIfFighterIsChosen()
     {
         if (gameSession.GetActualUser() != user) return;
-        Debug.Log("Aimy: Hey, it's my turn! yupee!");
-        gameSession.NextTurn();
-
+        buttonManager.SetNextTurnButton(field.CheckIfFieldLimitReached());
     }
 }

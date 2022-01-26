@@ -13,7 +13,7 @@ public class GameSession : MonoBehaviour
     [SerializeField] int numberOfPlayer = 2;
 
     [Header("Debug Only")]
-    [SerializeField] Field[] fieldArray;
+    [SerializeField] Field[] allFields;
     [SerializeField] int playerTurn = 0;
     [SerializeField] int enemyTurn = 0;
     [SerializeField] Users whoIsPlaying;
@@ -22,7 +22,7 @@ public class GameSession : MonoBehaviour
 
     void Start()
     {
-        fieldArray = FindObjectsOfType<Field>();
+        allFields = FindObjectsOfType<Field>();
         StartGame();
     }
 
@@ -53,8 +53,12 @@ public class GameSession : MonoBehaviour
         return whoIsPlaying;
     }
 
+    public void OnClick()
+    {
+        NextTurn();
+    }
 
-    public void NextPlayer()
+    public void NextTurn()
     {
         var nextPlayer_Int = (int)whoIsPlaying + 1;
         if (nextPlayer_Int >= numberOfPlayer) nextPlayer_Int = 0;
@@ -71,7 +75,7 @@ public class GameSession : MonoBehaviour
 
     public int GetCardsInField(Field targetField)
     {
-        foreach(Field field in fieldArray)
+        foreach(Field field in allFields)
         {
             if (targetField == field)
             {
@@ -82,6 +86,7 @@ public class GameSession : MonoBehaviour
         Debug.LogWarning("There is no matching field!");
         return 0;
     }
+
     int CountChildren(Field parentObject)
     {
         var numberOfChildren = parentObject.transform.childCount;

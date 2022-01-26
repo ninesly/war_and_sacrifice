@@ -7,7 +7,7 @@ public class Field : MonoBehaviour
 {
     [Tooltip("0 for no limit")]
     [SerializeField] int cardsLimitPerUser;
-   // [SerializeField] GameSession.Users userType;
+
     int numberOfChildren;
 
 

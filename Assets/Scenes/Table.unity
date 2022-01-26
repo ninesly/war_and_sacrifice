@@ -889,11 +889,29 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5767324443391433589, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
   m_PrefabInstance: {fileID: 1763455895}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &845714322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6362607876594332214, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
+  m_PrefabInstance: {fileID: 201234257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &845714323 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8837184040052003691, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
   m_PrefabInstance: {fileID: 201234257}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &845714329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845714322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c88480d66a15f24181db2313c05ecdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  user: 0
 --- !u!1 &907625149
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,6 +1752,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1107657719917818943, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
+      propertyPath: nextTurnButton
+      value: 
+      objectReference: {fileID: 5969912079852683079}
     - target: {fileID: 2867097263238702896, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
       propertyPath: m_Name
       value: Game Session
@@ -1789,6 +1811,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3682809126185789006, guid: 2b9d0c7464a09fd46812ac2c10fac93c, type: 3}
   m_PrefabInstance: {fileID: 7044355543572437263}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5969912079852683079 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3682809126185789000, guid: 2b9d0c7464a09fd46812ac2c10fac93c, type: 3}
+  m_PrefabInstance: {fileID: 7044355543572437263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6106024027778363795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1911,7 +1944,7 @@ PrefabInstance:
       objectReference: {fileID: 676541132}
     - target: {fileID: 3682809126185789000, guid: 2b9d0c7464a09fd46812ac2c10fac93c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextPlayer
+      value: OnClick
       objectReference: {fileID: 0}
     - target: {fileID: 3682809126185789000, guid: 2b9d0c7464a09fd46812ac2c10fac93c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

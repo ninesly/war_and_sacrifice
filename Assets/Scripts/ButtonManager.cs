@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
+    [SerializeField] Button nextTurnButton;
     [Header("Debug only")]
     [SerializeField] Button[] allButtons;
 
@@ -19,5 +20,10 @@ public class ButtonManager : MonoBehaviour
         {
             button.interactable = state;
         }
+    }
+
+    public void SetNextTurnButton(bool state)
+    {
+        nextTurnButton.interactable = state;
     }
 }
