@@ -121,8 +121,8 @@ public class AI : MonoBehaviour
     {
         cardsInHand.Remove(chosenCard);
 
-        var dragDrop = chosenCard.GetComponent<DragDrop>();
-        dragDrop.ChangePlaceOfCard(field.gameObject);
+        var moveCards = chosenCard.GetComponent<MoveCards>();
+        moveCards.AttemptToChangePlaceOfCard(field.gameObject);
     }
 
     bool EmptyHand()

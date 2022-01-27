@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(MoveCards))]
+[RequireComponent(typeof(CardManager))]
 public class DragDrop : MonoBehaviour
 {
     [SerializeField][Range(-1f, 1f)] float colorValueModificator = -0.06f;
@@ -12,27 +14,31 @@ public class DragDrop : MonoBehaviour
     GameObject canvas;
     GameObject startParent;
     GameObject dropZone;
-    Card cardSO;
+    MoveCards moveCards;
     GameSession.Users user;
 
     Vector2 startPosition;
 
     public bool isDragging = false;
-    bool isOccupied = false;  
 
     GameSession gameSession;
     
 
-    private void Awake()
+    void Awake()
     {
         canvas = GameObject.FindGameObjectWithTag("Main Canva");
     }
 
-    private void Start()
+    void Start()
+    {
+        Setup();
+    }
+
+    void Setup()
     {
         gameSession = FindObjectOfType<GameSession>();
-        cardSO = GetComponent<CardManager>().GetCardSO();
         user = GetComponent<CardManager>().GetUserOfCard();
+        moveCards = GetComponent<MoveCards>();
     }
 
     void Update()
@@ -44,7 +50,7 @@ public class DragDrop : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Drop Zone") && isDragging)
         {
@@ -53,13 +59,13 @@ public class DragDrop : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    void OnCollisionExit2D(Collision2D collision)
     {
         HideHighlight(dropZone);
         dropZone = null;
     }
 
-    private void ShowHighlight(GameObject dropZone)
+    void ShowHighlight(GameObject dropZone)
     {
         if (!dropZone) return;
 
@@ -72,11 +78,17 @@ public class DragDrop : MonoBehaviour
         dropZone.GetComponent<Image>().color = Color.HSVToRGB(h, s, v);
     }
 
-    private void HideHighlight(GameObject dropZone)
+    void HideHighlight(GameObject dropZone)
     {
         if (!dropZone) return;
 
         dropZone.GetComponent<Image>().color = defaultColor;
+    }
+
+    void TakeCardBack()
+    {
+        transform.position = startPosition;
+        transform.SetParent(startParent.transform, false);
     }
 
     // -------------------------------------------------------------------------------------------------- PUBLIC METHODS
@@ -98,44 +110,23 @@ public class DragDrop : MonoBehaviour
 
         if (!dropZone)
         {
-            //unsuccesful 1
+            //unsuccesful drag
             TakeCardBack();
             return;
         }
 
-        isOccupied = dropZone.gameObject.GetComponent<Field>().CheckIfFieldLimitReached();
-
-        if (isOccupied)
+        // succesful drag - card is above proper Field
+        // now we check if placing a card was succesful
+        if (!moveCards.AttemptToChangePlaceOfCard(dropZone))
         {
-            //unsuccesful 2
+            //unsuccesful placing
             TakeCardBack();
             return;
         }
 
-        // succesful 
-        ChangePlaceOfCard(dropZone);
-        HideHighlight(dropZone);
-    }
-
-    private void TakeCardBack()
-    {
-        transform.position = startPosition;
-        transform.SetParent(startParent.transform, false);
-    }
-
-    public void ChangePlaceOfCard(GameObject dropZone)
-    {
-        transform.SetParent(dropZone.transform, false);
-        transform.localPosition = Vector3.zero;
-
-        //check if dropZone have container and if yes, the put CardSO there and detroy Object
-        var cardContainer = dropZone.GetComponent<CardContainer>();
-        if (cardContainer)
-        {
-            if (!cardSO) cardSO = GetComponent<CardManager>().GetCardSO();
-            cardContainer.AddCardSOToContainer(cardSO);
-            Destroy(gameObject);    
-        }
+        // succesful placing 
+        // placing itself will be handled by MoveCards component
+        HideHighlight(dropZone);  
     }
 
     public GameObject GetCanvas()
