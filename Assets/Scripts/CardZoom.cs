@@ -46,12 +46,12 @@ public class CardZoom : MonoBehaviour
         Destroy(zoomedCard);
     }
 
-    public void SetAsClone()
+    void SetAsClone()
     {
         isClone = true;
     }
 
-    private void OnDestroy()
+    void OnDestroy()
     {
         if (zoomedCard) Destroy(zoomedCard);
     }

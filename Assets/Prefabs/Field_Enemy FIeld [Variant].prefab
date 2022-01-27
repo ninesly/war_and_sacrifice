@@ -108,6 +108,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8389298969815309566, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
+      propertyPath: user
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389298969815309566, guid: 6c91918862126d9409070f6778a3d9a6, type: 3}
       propertyPath: cardsLimit
       value: 3
       objectReference: {fileID: 0}

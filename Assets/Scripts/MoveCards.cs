@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveCards : MonoBehaviour
 {
     CardManager cardManager;
-    private void Start()
+    void Start()
     {
         cardManager = GetComponent<CardManager>();
     }
@@ -25,7 +25,7 @@ public class MoveCards : MonoBehaviour
         return true;
     }
 
-    private void ChangePlaceOfCard(GameObject dropZone)
+    void ChangePlaceOfCard(GameObject dropZone)
     {
         transform.SetParent(dropZone.transform, false);
         transform.localPosition = Vector3.zero;

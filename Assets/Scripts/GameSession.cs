@@ -16,6 +16,7 @@ public class GameSession : MonoBehaviour
     [SerializeField] Field[] allFields;
     [SerializeField] int playerTurn = 0;
     [SerializeField] int enemyTurn = 0;
+    [SerializeField] int currentGameRound = 0;
     [SerializeField] Users whoIsPlaying;
 
     int cardsInField;
@@ -42,12 +43,43 @@ public class GameSession : MonoBehaviour
         if ((int)actualUser == 0)
         {
             playerTurn++;
-            return;
+        }
+        else
+        {
+            enemyTurn++;
         }
 
-        enemyTurn++;
+        RoundCounter();
     }
 
+    void RoundCounter()
+    {
+        float roundProgression = (playerTurn + enemyTurn) / 2;
+        currentGameRound = Mathf.CeilToInt(roundProgression);
+
+        //testing
+        if(roundProgression == currentGameRound && currentGameRound != 0)
+        {
+            Debug.Log("TIME FOR DUEL!");
+            RunAbilitesOnCards();
+        }
+            
+    }
+    void RunAbilitesOnCards()
+    {
+        // just for testing now
+        DuelField[] duelfields = FindObjectsOfType<DuelField>();
+        foreach (DuelField duelField in duelfields)
+        {
+            Debug.Log(duelField.gameObject.name + " is trying to trigger ability");
+            var card = duelField.GetComponentInChildren<CardManager>();
+            if (card)
+            {
+                card.CM_TriggerAbility();
+                Debug.Log("Trigger Ability on " + card.gameObject.name);
+            }
+        }
+    }
     public Users GetActualUser()
     {
         return whoIsPlaying;
@@ -70,7 +102,7 @@ public class GameSession : MonoBehaviour
             buttonManager.SetButtons(true);
             return;
         }
-        buttonManager.SetButtons(false);
+        buttonManager.SetButtons(false);        
     }
 
     public int GetCardsInField(Field targetField)
@@ -92,5 +124,10 @@ public class GameSession : MonoBehaviour
         var numberOfChildren = parentObject.transform.childCount;
 
         return numberOfChildren;
+    }
+
+    public int GetCurrentGameRound()
+    {
+        return currentGameRound;
     }
 }

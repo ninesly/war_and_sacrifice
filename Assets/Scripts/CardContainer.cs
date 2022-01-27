@@ -13,14 +13,14 @@ public class CardContainer : MonoBehaviour
 
     bool isEmpty = false;
 
-    private void Start()
+    void Start()
     {
         if (!coverImage) Debug.LogError("This Card Container " + gameObject.name + " doesn't have cover image!");
 
         CheckIfEmpty();
     }
 
-    private void CheckIfEmpty()
+    void CheckIfEmpty()
     {
         if (cardsSOInContainer.Count == 0)
         {
@@ -34,7 +34,7 @@ public class CardContainer : MonoBehaviour
         ChangeCoverImage();        
     }
 
-    private void ChangeCoverImage()
+    void ChangeCoverImage()
     {    
         if (faceUpCards)
         {

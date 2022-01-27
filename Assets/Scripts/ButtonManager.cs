@@ -9,7 +9,7 @@ public class ButtonManager : MonoBehaviour
     [Header("Debug only")]
     [SerializeField] Button[] allButtons;
 
-    private void Start()
+    void Start()
     {
         allButtons = FindObjectsOfType<Button>();
     }

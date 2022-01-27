@@ -7,27 +7,28 @@ public class CardManager : MonoBehaviour
 {
     [SerializeField] Card cardSO;
     [Header("Debug Only")]
-    [SerializeField] GameSession.Users user;
+    [SerializeField] GameSession.Users userOfCard;
 
     TMP_Text cardText;
 
-    private void Start()
+    void Start()
     {
-        cardText = GetComponentInChildren<TMP_Text>();
+        cardText = GetComponentInChildren<TMP_Text>();        
         SetCardText();
     }
 
-    private void SetCardText()
+    void SetCardText()
     {
         if (!cardSO) return;
         if (!cardText) return;
 
-        cardText.text = cardSO.cardValue.ToString();
+        cardText.text = cardSO.cardStrength.ToString();
     }
 
     public void SetCardSO(Card newCard, GameSession.Users user)
     {
         cardSO = newCard;
+        cardSO.ability.Initialize(gameObject);
         SetCardText();
     }
 
@@ -39,6 +40,22 @@ public class CardManager : MonoBehaviour
 
     public GameSession.Users GetUserOfCard()
     {
-        return user;
+        return userOfCard;
+    }
+
+    public void SetUserOfCard(GameSession.Users userOfCard)
+    {
+        this.userOfCard = userOfCard;
+    }
+
+
+    public void ReceiveDamage(int damage)
+    {
+        Debug.Log("Card " + gameObject.name + " received damage of: " + damage);
+    }
+
+    public void CM_TriggerAbility()
+    {
+        cardSO.ability.TriggerAbility(gameObject);
     }
 }

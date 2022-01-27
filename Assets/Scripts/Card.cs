@@ -5,5 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class Card : ScriptableObject
 {
-    public int cardValue = 1;
+    public int cardStrength = 1;
+    public int cardHitpoints = 100;
+    public Ability ability;
+
 }

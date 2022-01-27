@@ -16,7 +16,7 @@ public class DuelField : MonoBehaviour
         field = GetComponent<Field>();
     }
 
-    private void Update()
+    void Update()
     {
         CheckIfFighterIsChosen();
     }

@@ -17,7 +17,7 @@ public class DrawCards : MonoBehaviour
     Croupier croupier;
     
 
-    private void Start()
+    void Start()
     {
         gameSession = FindObjectOfType<GameSession>();
         croupier = GetComponent<Croupier>();
@@ -32,7 +32,7 @@ public class DrawCards : MonoBehaviour
         DrawCardsFromContainer(cardsToDraw);
     }
 
-    public void DrawCardsFromContainer(int amount)
+    void DrawCardsFromContainer(int amount)
     {
         if (gameSession.GetActualUser() != user) return;
 
@@ -63,12 +63,15 @@ public class DrawCards : MonoBehaviour
         }
     }
 
-    private void CreateCardObject(Card cardSOToCreate)
+    void CreateCardObject(Card cardSOToCreate)
     {
-        var newCard = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity);
+        CardManager newCard = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity);
         newCard.transform.SetParent(targetField.transform, false);
+        string cardName = user + " Card " + cardSOToCreate.cardStrength;
+        newCard.gameObject.name = cardName;
+        newCard.SetUserOfCard(user);
 
         // tie card object to scriptable object
-        newCard.GetComponent<CardManager>().SetCardSO(cardSOToCreate, user);
+        newCard.SetCardSO(cardSOToCreate, user);
     }
 }

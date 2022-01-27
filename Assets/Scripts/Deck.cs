@@ -9,14 +9,14 @@ public class Deck : MonoBehaviour
 
     CardContainer cardContainer;
 
-    private void Start()
+    void Start()
     {
         cardContainer = GetComponent<CardContainer>();
 
         PrepareDeck();
     }
 
-    private void PrepareDeck()
+    void PrepareDeck()
     {
         for (int cardIndex = 0; cardIndex < cardsSO.Count; cardIndex++)
         {

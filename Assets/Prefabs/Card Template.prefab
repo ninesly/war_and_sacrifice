@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: -476145820983042854}
   - component: {fileID: 5101848532357331602}
   - component: {fileID: -8539145400964678485}
+  - component: {fileID: 3548736266277016456}
   m_Layer: 6
   m_Name: Card Template
   m_TagString: Untagged
@@ -229,6 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorValueModificator: -0.06
+  isDragging: 0
 --- !u!114 &-8152092621380656263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,3 +381,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSO: {fileID: 0}
+  user: 0
+--- !u!114 &3548736266277016456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7533433686143982113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8828a32506e5f40bfb3aa7b229ccb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
