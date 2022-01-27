@@ -79,15 +79,6 @@ public class DragDrop : MonoBehaviour
         dropZone.GetComponent<Image>().color = defaultColor;
     }
 
-    private void AddingCardSOToCantainer(GameObject dropZone)
-    {
-        var cardContainer = dropZone.GetComponent<CardContainer>();
-        if (!cardContainer) return;
-
-        cardContainer.AddCardSOToContainer(cardSO);
-        Destroy(gameObject);
-    }
-
     // -------------------------------------------------------------------------------------------------- PUBLIC METHODS
 
     public void StartDrag() // by Event Trigger
@@ -136,7 +127,15 @@ public class DragDrop : MonoBehaviour
     {
         transform.SetParent(dropZone.transform, false);
         transform.localPosition = Vector3.zero;
-        AddingCardSOToCantainer(dropZone);
+
+        //check if dropZone have container and if yes, the put CardSO there and detroy Object
+        var cardContainer = dropZone.GetComponent<CardContainer>();
+        if (cardContainer)
+        {
+            if (!cardSO) cardSO = GetComponent<CardManager>().GetCardSO();
+            cardContainer.AddCardSOToContainer(cardSO);
+            Destroy(gameObject);    
+        }
     }
 
     public GameObject GetCanvas()
