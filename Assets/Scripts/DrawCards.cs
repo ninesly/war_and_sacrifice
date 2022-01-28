@@ -9,7 +9,7 @@ public class DrawCards : MonoBehaviour
     [SerializeField] Field targetField;
     [SerializeField] bool takeCardsFromDiscardIfEmpty = false;
     [SerializeField] CardContainer discardCardContainer;
-    [SerializeField] CardManager cardTemplate;
+    [SerializeField] CardObjectManager cardTemplate;
 
     int cardsToDraw;
 
@@ -65,7 +65,7 @@ public class DrawCards : MonoBehaviour
 
     void CreateCardObject(Card cardSOToCreate)
     {
-        CardManager newCard = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity);
+        CardObjectManager newCard = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity);
         newCard.transform.SetParent(targetField.transform, false);
         string cardName = user + " Card " + cardSOToCreate.cardStrength;
         newCard.gameObject.name = cardName;

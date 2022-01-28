@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class CardManager : MonoBehaviour
+[RequireComponent(typeof(MoveCards), typeof(DragDrop), typeof(DealDamageTriggerable))]
+[RequireComponent(typeof(CardZoom))] 
+public class CardObjectManager : MonoBehaviour
 {
     [SerializeField] Card cardSO;
     [Header("Debug Only")]
@@ -11,9 +13,15 @@ public class CardManager : MonoBehaviour
 
     TMP_Text cardText;
 
+    MoveCards moveCards;
+    GameSession gameSession;
+
     void Start()
     {
-        cardText = GetComponentInChildren<TMP_Text>();        
+        moveCards = GetComponent<MoveCards>();
+        cardText = GetComponentInChildren<TMP_Text>();
+
+        gameSession = FindObjectOfType<GameSession>();
         SetCardText();
     }
 
@@ -57,5 +65,16 @@ public class CardManager : MonoBehaviour
     public void CM_TriggerAbility()
     {
         cardSO.ability.TriggerAbility(gameObject);
+    }
+
+    public bool AttemptToChangePlaceOfCard(GameObject dropZone)
+    {
+        var result = moveCards.AttemptToChangePlaceOfCard(dropZone);
+        return result;
+    }
+
+    public GameSession.Users GetActualUser()
+    {
+        return gameSession.GetActualUser();
     }
 }

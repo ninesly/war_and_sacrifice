@@ -39,7 +39,7 @@ public class CardContainer : MonoBehaviour
         if (faceUpCards)
         {
             var lastElement = cardsSOInContainer.Count-1;
-            coverImage.GetComponent<CardManager>().SetCardSO(cardsSOInContainer[lastElement], user);
+            coverImage.GetComponent<CardObjectManager>().SetCardSO(cardsSOInContainer[lastElement], user);
         }   
     }
 

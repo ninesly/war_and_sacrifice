@@ -72,7 +72,7 @@ public class GameSession : MonoBehaviour
         foreach (DuelField duelField in duelfields)
         {
             Debug.Log(duelField.gameObject.name + " is trying to trigger ability");
-            var card = duelField.GetComponentInChildren<CardManager>();
+            var card = duelField.GetComponentInChildren<CardObjectManager>();
             if (card)
             {
                 card.CM_TriggerAbility();

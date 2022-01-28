@@ -16,7 +16,7 @@ public class AI : MonoBehaviour
     [SerializeField] Field enemyDiscardField;
 
     [Header("Debug only")]
-    [SerializeField] List<CardManager> cardsInHand = new List<CardManager>();
+    [SerializeField] List<CardObjectManager> cardsInHand = new List<CardObjectManager>();
 
     GameSession gameSession;
     DrawCards drawCardsComponent;
@@ -63,15 +63,15 @@ public class AI : MonoBehaviour
     void FightWithFirstCard()
     {
         if (EmptyHand()) return;
-        var firstCard = enemyMainField.GetComponentInChildren<CardManager>();
+        var firstCard = enemyMainField.GetComponentInChildren<CardObjectManager>();
         PlayCard(firstCard, enemyDuelField);
     }
 
     void SortMyCards()
     {        
-        CardManager[] allCardsObjects = enemyMainField.GetComponentsInChildren<CardManager>(); // take all Card's Objects
+        CardObjectManager[] allCardsObjects = enemyMainField.GetComponentsInChildren<CardObjectManager>(); // take all Card's Objects
         
-        foreach (CardManager card in allCardsObjects)
+        foreach (CardObjectManager card in allCardsObjects)
         {
             cardsInHand.Add(card); // make a list of Cards Objects
         }
@@ -100,7 +100,7 @@ public class AI : MonoBehaviour
 
     // -------------------------------------------------------------------------------- OTHER
 
-    int SortFunc (CardManager cardA, CardManager cardB)
+    int SortFunc (CardObjectManager cardA, CardObjectManager cardB)
     {
         int valueA = cardA.GetCardSO().cardStrength;
         int valueB = cardB.GetCardSO().cardStrength;
@@ -117,12 +117,11 @@ public class AI : MonoBehaviour
         return 0;
     }
 
-    void PlayCard(CardManager chosenCard, Field field)
+    void PlayCard(CardObjectManager chosenCard, Field field)
     {
         cardsInHand.Remove(chosenCard);
 
-        var moveCards = chosenCard.GetComponent<MoveCards>();
-        moveCards.AttemptToChangePlaceOfCard(field.gameObject);
+        chosenCard.AttemptToChangePlaceOfCard(field.gameObject);
     }
 
     bool EmptyHand()

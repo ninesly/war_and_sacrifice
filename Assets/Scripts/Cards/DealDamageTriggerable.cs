@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CardManager))]
 public class DealDamageTriggerable : MonoBehaviour
 {
     public enum Target { EnemyFighter, EnemyHand }
@@ -13,13 +12,13 @@ public class DealDamageTriggerable : MonoBehaviour
     DuelField targetField;
     GameSession.Users userOfCard;
 
-    CardManager targetCard;
+    CardObjectManager targetCard;
 
     public void Initialize(int dmgAmount, Target target)
     {
         damage = dmgAmount;
         this.target = target;
-        userOfCard = GetComponent<CardManager>().GetUserOfCard();
+        userOfCard = GetComponent<CardObjectManager>().GetUserOfCard();
         FindTargetField();
     }
 
@@ -43,7 +42,7 @@ public class DealDamageTriggerable : MonoBehaviour
             Debug.LogError(gameObject.name + " can't find target field");
             return;
         }
-        targetCard = targetField.GetComponentInChildren<CardManager>();
+        targetCard = targetField.GetComponentInChildren<CardObjectManager>();
         if (!targetCard)
         {
             Debug.LogError(gameObject.name + " can't find target card on " + targetField.gameObject.name);

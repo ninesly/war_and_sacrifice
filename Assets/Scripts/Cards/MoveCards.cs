@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class MoveCards : MonoBehaviour
 {
-    CardManager cardManager;
-    void Start()
-    {
-        cardManager = GetComponent<CardManager>();
-    }
-
     public bool AttemptToChangePlaceOfCard(GameObject dropZone)
     {
         var isOccupied = dropZone.gameObject.GetComponent<Field>().CheckIfFieldLimitReached();
@@ -34,7 +28,7 @@ public class MoveCards : MonoBehaviour
         var cardContainer = dropZone.GetComponent<CardContainer>();
         if (cardContainer)
         {
-            var cardSO = GetComponent<CardManager>().GetCardSO();
+            var cardSO = GetComponent<CardObjectManager>().GetCardSO();
             cardContainer.AddCardSOToContainer(cardSO);
             Destroy(gameObject);
         }

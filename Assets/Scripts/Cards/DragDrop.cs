@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(MoveCards))]
-[RequireComponent(typeof(CardManager))]
 public class DragDrop : MonoBehaviour
 {
     [SerializeField][Range(-1f, 1f)] float colorValueModificator = -0.06f;
@@ -14,14 +12,15 @@ public class DragDrop : MonoBehaviour
     GameObject canvas;
     GameObject startParent;
     GameObject dropZone;
+
     MoveCards moveCards;
+    CardObjectManager cardManager;
+
     GameSession.Users user;
-
     Vector2 startPosition;
-
     public bool isDragging = false;
 
-    GameSession gameSession;
+   
     
 
     void Awake()
@@ -36,8 +35,8 @@ public class DragDrop : MonoBehaviour
 
     void Setup()
     {
-        gameSession = FindObjectOfType<GameSession>();
-        user = GetComponent<CardManager>().GetUserOfCard();
+        cardManager = GetComponent<CardObjectManager>();
+        user = cardManager.GetUserOfCard();
         moveCards = GetComponent<MoveCards>();
     }
 
@@ -95,7 +94,7 @@ public class DragDrop : MonoBehaviour
 
     public void StartDrag() // by Event Trigger
     {
-        if (gameSession.GetActualUser() != user) return;
+        if (cardManager.GetActualUser() != user) return;
 
         startPosition = transform.position;
         startParent = transform.parent.gameObject;
@@ -104,7 +103,7 @@ public class DragDrop : MonoBehaviour
 
     public void StopDrag() // by Event Trigger
     {
-        if (gameSession.GetActualUser() != user) return;
+        if (cardManager.GetActualUser() != user) return;
 
         isDragging = false;     
 
