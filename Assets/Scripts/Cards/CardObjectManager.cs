@@ -4,24 +4,24 @@ using UnityEngine;
 using TMPro;
 
 
-[RequireComponent(typeof(MoveCards), typeof(DragDrop))]
+[RequireComponent(typeof(DragDrop))]
 [RequireComponent(typeof(CardZoom))]
 [RequireComponent(typeof(CardSOManager))]
 public class CardObjectManager : MonoBehaviour
 {
     [Header("Debug Only")]
-    [SerializeField] protected GameSession.Users userOfCard;
+    [SerializeField] protected TurnManager.Users userOfCard;
 
-    GameSession gameSession;
+    TurnManager gameSession;
 
-    MoveCards moveCards;
+    CardSOManager cardSOManager;
     [SerializeField] TMP_Text cardText;    
 
     void Start()
     {
-        gameSession = FindObjectOfType<GameSession>();
-  
-        moveCards = GetComponent<MoveCards>();
+        gameSession = FindObjectOfType<TurnManager>();
+
+        cardSOManager = GetComponent<CardSOManager>();
         cardText = GetComponentInChildren<TMP_Text>();
 
         SetCardText();
@@ -29,7 +29,8 @@ public class CardObjectManager : MonoBehaviour
 
     void SetCardText()
     {
-        var cardSO = GetComponent<CardSOManager>().GetCardSO();
+        if (!cardSOManager) cardSOManager = GetComponent<CardSOManager>();
+        var cardSO = cardSOManager.GetCardSO();
         if (!cardText)
         {
             Debug.LogWarning("There is no text component on " + gameObject.name);
@@ -38,30 +39,53 @@ public class CardObjectManager : MonoBehaviour
         cardText.text = cardSO.cardStrength.ToString();
     }
 
-    public void SetUserOfCard(GameSession.Users userOfCard)
+    public void SetUserOfCard(TurnManager.Users userOfCard)
     {
         this.userOfCard = userOfCard;
     }
 
-    public bool OrderToChangePlaceOfCard(Field fieldForCard)
+    public bool AttemptToChangePlaceOfCard(Field fieldForCard)
     {
-        var moveCards = GetComponent<MoveCards>();
-        if (!moveCards)
+        var isOccupied = fieldForCard.CheckIfFieldLimitReached();
+
+        if (isOccupied)
         {
-            Debug.LogError("There is no move cards");
+            //unsuccesful placing - Field is occupied
             return false;
         }
-        return moveCards.AttemptToChangePlaceOfCard(fieldForCard);
+
+        //succesful placing
+        ChangePlaceOfCard(fieldForCard);
+        return true;
     }
 
+    void ChangePlaceOfCard(Field fieldForCard)
+    {
+        transform.SetParent(fieldForCard.transform, false);
+        transform.localPosition = Vector3.zero;
 
+        //check if dropZone have container and if yes, the put CardSO there and detroy Object
+        var cardContainer = fieldForCard.GetComponent<CardContainer>();
+        if (cardContainer)
+        {
+            if (!cardSOManager) cardSOManager = GetComponent<CardSOManager>();
+            var cardSO = cardSOManager.GetCardSO();
+            cardContainer.AddCardSOToContainer(cardSO);
+            DestroyThisObject();
+        }
+    }
 
-    public GameSession.Users GetActualUser()
+    void DestroyThisObject()
+    {
+        Destroy(gameObject);
+    }
+
+    public TurnManager.Users GetActualUser()
     {
         return gameSession.GetActualUser();
     }
 
-    public GameSession.Users GetUserOfCard()
+    public TurnManager.Users GetUserOfCard()
     {
         return userOfCard;
     }

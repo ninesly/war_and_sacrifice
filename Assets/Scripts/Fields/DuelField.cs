@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class DuelField : Field
 {
-    GameSession gameSession;
-    ButtonManager buttonManager;
+    TurnManager turnManager;
 
     void Start()
     {
-        gameSession = FindObjectOfType<GameSession>();
-        buttonManager = gameSession.GetComponent<ButtonManager>();
+        turnManager = FindObjectOfType<TurnManager>();
     }
 
     void Update()
@@ -20,7 +18,7 @@ public class DuelField : Field
 
     void CheckIfFighterIsChosen()
     {
-        if (gameSession.GetActualUser() != user) return;
-        buttonManager.SetNextTurnButton(CheckIfFieldLimitReached());
+        if (turnManager.GetActualUser() != user) return;
+        turnManager.SetUserAsReady(CheckIfFieldLimitReached());
     }
 }

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2867097263238702902}
-  - component: {fileID: 2867097263238702903}
   - component: {fileID: 1107657719917818943}
+  - component: {fileID: 6400434394460995588}
   m_Layer: 0
-  m_Name: Game Session
+  m_Name: Judge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,26 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2867097263238702903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2867097263238702896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfe6f516e6ce3f841817474f46786a45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonManager: {fileID: 1107657719917818943}
-  startingUser: 0
-  randomStartingUser: 0
-  numberOfPlayer: 2
-  fieldArray: []
-  playerTurn: 0
-  enemyTurn: 0
-  whoIsPlaying: 0
 --- !u!114 &1107657719917818943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,4 +44,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597159219682fe344940a97c396add73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextTurnButton: {fileID: 0}
   allButtons: []
+--- !u!114 &6400434394460995588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2867097263238702896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f3cd2ea0360784cbf765f87bceda89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonManager: {fileID: 1107657719917818943}
+  startingUser: 0
+  randomStartingUser: 0
+  numberOfPlayer: 2
+  playerTurn: 0
+  enemyTurn: 0
+  currentGameRound: 0
+  whoIsPlaying: 0

@@ -145,7 +145,6 @@ GameObject:
   - component: {fileID: 4363336341752446671}
   - component: {fileID: 1950030188308197386}
   - component: {fileID: 4314935706857257462}
-  - component: {fileID: 6136085020794432412}
   - component: {fileID: 392379237794200225}
   - component: {fileID: 1602248541129268511}
   - component: {fileID: 726214817017956438}
@@ -214,18 +213,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6136085020794432412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4757978388855510483}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7f2392b89a3eea4b89c4789bcb1d71d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &392379237794200225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userOfCard: 0
+  cardText: {fileID: 0}
   cardSO: {fileID: 0}
 --- !u!114 &1700683350813424406
 MonoBehaviour:

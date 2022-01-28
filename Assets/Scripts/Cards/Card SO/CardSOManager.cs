@@ -14,7 +14,7 @@ public class CardSOManager : CardObjectManager
         return cardSO;
     }
 
-    public void SetCardSO(Card newCard, GameSession.Users user)
+    public void SetCardSO(Card newCard, TurnManager.Users user)
     {
         cardSO = newCard;
     }

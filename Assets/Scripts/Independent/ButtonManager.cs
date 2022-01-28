@@ -6,17 +6,18 @@ using UnityEngine.UI;
 public class ButtonManager : MonoBehaviour
 {
     [SerializeField] Button nextTurnButton;
-    [Header("Debug only")]
-    [SerializeField] Button[] allButtons;
+    [SerializeField] Button proceedButton;
+
+    [SerializeField] Button[] buttonsToDisable;
 
     void Start()
     {
-        allButtons = FindObjectsOfType<Button>();
+        //buttonsToDisable = FindObjectsOfType<Button>();
     }
 
     public void SetButtons(bool state)
     {
-        foreach(Button button in allButtons)
+        foreach(Button button in buttonsToDisable)
         {
             button.interactable = state;
         }
@@ -25,5 +26,10 @@ public class ButtonManager : MonoBehaviour
     public void SetNextTurnButton(bool state)
     {
         nextTurnButton.interactable = state;
+    }
+
+    public void SetProceedButton(bool state)
+    {
+        proceedButton.interactable = state;
     }
 }

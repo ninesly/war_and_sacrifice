@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DrawCards : MonoBehaviour
 {
-    [SerializeField] GameSession.Users user;
+    [SerializeField] TurnManager.Users user;
     [SerializeField] CardContainer originCardContainer;
     [SerializeField] Field targetField;
     [SerializeField] bool takeCardsFromDiscardIfEmpty = false;
@@ -13,22 +13,23 @@ public class DrawCards : MonoBehaviour
 
     int cardsToDraw;
 
-    GameSession gameSession;
+    TurnManager gameSession;
     Croupier croupier;
     
 
     void Start()
     {
-        gameSession = FindObjectOfType<GameSession>();
+        gameSession = FindObjectOfType<TurnManager>();
         croupier = GetComponent<Croupier>();
     }
 
     public void OnClick()
     {
-        var cardsInField = gameSession.GetCardsInField(targetField);
+        var cardsInField = targetField.GetCardsInField();
         var cardsInFieldLimit = targetField.GetCardsCardsLimit();
         cardsToDraw = cardsInFieldLimit - cardsInField;
 
+        Debug.Log("Draw " + cardsToDraw + " cards");
         DrawCardsFromContainer(cardsToDraw);
     }
 

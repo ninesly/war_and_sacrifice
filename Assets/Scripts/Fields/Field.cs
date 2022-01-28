@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Field : MonoBehaviour
 {
-    [SerializeField] protected GameSession.Users user;
+    [SerializeField] protected TurnManager.Users user;
     [Tooltip("0 for no limit")]
     [SerializeField] protected int cardsLimit;   
 
@@ -27,10 +27,13 @@ public class Field : MonoBehaviour
         return cardsLimit;
     }
 
-    public GameSession.Users GetUserOfField()
+    public TurnManager.Users GetUserOfField()
     {
         return user;
     }
 
-     
+    public int GetCardsInField()
+    {  
+        return transform.childCount;
+    }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AI : MonoBehaviour
 {
-    [SerializeField] GameSession.Users user;
+    [SerializeField] TurnManager.Users user;
     [SerializeField] bool isAlive = true;
 
     [Header("AI rig")]
@@ -18,7 +18,7 @@ public class AI : MonoBehaviour
     [Header("Debug only")]
     [SerializeField] List<CardSOManager> cardsInHand = new List<CardSOManager>();
 
-    GameSession gameSession;
+    TurnManager gameSession;
     DrawCards drawCardsComponent;
 
     void Start()
@@ -29,7 +29,7 @@ public class AI : MonoBehaviour
     void Setup()
     {
         gameObject.SetActive(isAlive);
-        gameSession = FindObjectOfType<GameSession>();
+        gameSession = FindObjectOfType<TurnManager>();
         drawCardsComponent = enemyDeck.GetComponent<DrawCards>();
     }
 
@@ -47,7 +47,7 @@ public class AI : MonoBehaviour
         SortMyCards();
         //FightWithFirstCard(); // just for testing
         FightWithStrongestCard();
-        SacrificeNextStrongestCard();
+        //SacrificeNextStrongestCard();
         //DiscardWeakestCard();
 
         gameSession.NextTurn();
@@ -59,6 +59,7 @@ public class AI : MonoBehaviour
     {
         drawCardsComponent.OnClick();
 
+        cardsInHand.Clear();
         CardSOManager[] allCardsObjects = enemyMainField.GetComponentsInChildren<CardSOManager>(); // take all Card's Objects
 
         foreach (CardSOManager card in allCardsObjects)
@@ -119,7 +120,9 @@ public class AI : MonoBehaviour
 
     void PlayCard(CardSOManager chosenCard, Field field)
     {
-        if (!chosenCard.OrderToChangePlaceOfCard(field))
+        CardObjectManager cardManager = chosenCard.GetComponent<CardObjectManager>();
+
+        if (!cardManager.AttemptToChangePlaceOfCard(field))
         {
             Debug.LogWarning("Aimy: That was unsuccesful play");
             return;
