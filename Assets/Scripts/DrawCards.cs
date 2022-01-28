@@ -9,7 +9,7 @@ public class DrawCards : MonoBehaviour
     [SerializeField] Field targetField;
     [SerializeField] bool takeCardsFromDiscardIfEmpty = false;
     [SerializeField] CardContainer discardCardContainer;
-    [SerializeField] CardObjectManager cardTemplate;
+    [SerializeField] GameObject cardObject;
 
     int cardsToDraw;
 
@@ -42,17 +42,17 @@ public class DrawCards : MonoBehaviour
 
             if (!nextCardSO)
             {
-                Debug.Log("There is no cards in the container " + originCardContainer.name);
+               // Debug.Log("There is no cards in the container " + originCardContainer.name);
 
                 if (takeCardsFromDiscardIfEmpty)
                 {
-                    Debug.Log("Shuffle cards from discard");
+                    //Debug.Log("Shuffle cards from discard");
                     croupier.ShuffleAllBackToContainer(discardCardContainer, originCardContainer);
                     nextCardSO = originCardContainer.GetCardSOFromContainer();
 
                     if (!nextCardSO)
                     {
-                        Debug.Log("There is no cards neither in the container " + originCardContainer.name + "nor discard pile.");
+                       // Debug.Log("There is no cards neither in the container " + originCardContainer.name + "nor discard pile.");
                         return;
                     }
                 }
@@ -65,13 +65,13 @@ public class DrawCards : MonoBehaviour
 
     void CreateCardObject(Card cardSOToCreate)
     {
-        CardObjectManager newCard = Instantiate(cardTemplate, Vector3.zero, Quaternion.identity);
+        GameObject newCard = Instantiate(cardObject, Vector3.zero, Quaternion.identity);
         newCard.transform.SetParent(targetField.transform, false);
         string cardName = user + " Card " + cardSOToCreate.cardStrength;
         newCard.gameObject.name = cardName;
-        newCard.SetUserOfCard(user);
+        newCard.GetComponent<CardObjectManager>().SetUserOfCard(user);
 
         // tie card object to scriptable object
-        newCard.SetCardSO(cardSOToCreate, user);
+        newCard.GetComponent<CardSOManager>().SetCardSO(cardSOToCreate, user);
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class AttackAbility : Ability
 {
     [SerializeField] int damage = 1;
-    [SerializeField] DealDamageTriggerable.Target target;
+    [SerializeField] CardSOManager.Target target;
 
     DealDamageTriggerable dealDmg;
 

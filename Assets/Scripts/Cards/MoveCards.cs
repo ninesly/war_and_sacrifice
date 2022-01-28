@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class MoveCards : MonoBehaviour
 {
-    public bool AttemptToChangePlaceOfCard(GameObject dropZone)
+    CardSOManager cardSOManager;
+
+    private void Start()
     {
-        var isOccupied = dropZone.gameObject.GetComponent<Field>().CheckIfFieldLimitReached();
+        cardSOManager = GetComponent<CardSOManager>();
+    }
+
+    public bool AttemptToChangePlaceOfCard(Field fieldForCard)
+    {
+        var isOccupied = fieldForCard.CheckIfFieldLimitReached();
 
         if (isOccupied)
         {
@@ -15,20 +22,21 @@ public class MoveCards : MonoBehaviour
         }
 
         //succesful placing
-        ChangePlaceOfCard(dropZone);
+        ChangePlaceOfCard(fieldForCard);
         return true;
     }
 
-    void ChangePlaceOfCard(GameObject dropZone)
+
+    void ChangePlaceOfCard(Field fieldForCard)
     {
-        transform.SetParent(dropZone.transform, false);
+        transform.SetParent(fieldForCard.transform, false);
         transform.localPosition = Vector3.zero;
 
         //check if dropZone have container and if yes, the put CardSO there and detroy Object
-        var cardContainer = dropZone.GetComponent<CardContainer>();
+        var cardContainer = fieldForCard.GetComponent<CardContainer>();
         if (cardContainer)
         {
-            var cardSO = GetComponent<CardObjectManager>().GetCardSO();
+            var cardSO = cardSOManager.GetCardSO();
             cardContainer.AddCardSOToContainer(cardSO);
             Destroy(gameObject);
         }

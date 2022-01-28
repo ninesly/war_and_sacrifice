@@ -3,52 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-[RequireComponent(typeof(MoveCards), typeof(DragDrop), typeof(DealDamageTriggerable))]
-[RequireComponent(typeof(CardZoom))] 
+
+[RequireComponent(typeof(MoveCards), typeof(DragDrop))]
+[RequireComponent(typeof(CardZoom))]
+[RequireComponent(typeof(CardSOManager))]
 public class CardObjectManager : MonoBehaviour
 {
-    [SerializeField] Card cardSO;
     [Header("Debug Only")]
-    [SerializeField] GameSession.Users userOfCard;
+    [SerializeField] protected GameSession.Users userOfCard;
 
-    TMP_Text cardText;
+    GameSession gameSession;
 
     MoveCards moveCards;
-    GameSession gameSession;
+    [SerializeField] TMP_Text cardText;    
 
     void Start()
     {
+        gameSession = FindObjectOfType<GameSession>();
+  
         moveCards = GetComponent<MoveCards>();
         cardText = GetComponentInChildren<TMP_Text>();
 
-        gameSession = FindObjectOfType<GameSession>();
         SetCardText();
     }
 
     void SetCardText()
     {
-        if (!cardSO) return;
-        if (!cardText) return;
-
+        var cardSO = GetComponent<CardSOManager>().GetCardSO();
+        if (!cardText)
+        {
+            Debug.LogWarning("There is no text component on " + gameObject.name);
+            return;
+        }
         cardText.text = cardSO.cardStrength.ToString();
-    }
-
-    public void SetCardSO(Card newCard, GameSession.Users user)
-    {
-        cardSO = newCard;
-        cardSO.ability.Initialize(gameObject);
-        SetCardText();
-    }
-
-
-    public Card GetCardSO()
-    {
-        return cardSO;
-    }
-
-    public GameSession.Users GetUserOfCard()
-    {
-        return userOfCard;
     }
 
     public void SetUserOfCard(GameSession.Users userOfCard)
@@ -56,25 +43,26 @@ public class CardObjectManager : MonoBehaviour
         this.userOfCard = userOfCard;
     }
 
-
-    public void ReceiveDamage(int damage)
+    public bool OrderToChangePlaceOfCard(Field fieldForCard)
     {
-        Debug.Log("Card " + gameObject.name + " received damage of: " + damage);
+        var moveCards = GetComponent<MoveCards>();
+        if (!moveCards)
+        {
+            Debug.LogError("There is no move cards");
+            return false;
+        }
+        return moveCards.AttemptToChangePlaceOfCard(fieldForCard);
     }
 
-    public void CM_TriggerAbility()
-    {
-        cardSO.ability.TriggerAbility(gameObject);
-    }
 
-    public bool AttemptToChangePlaceOfCard(GameObject dropZone)
-    {
-        var result = moveCards.AttemptToChangePlaceOfCard(dropZone);
-        return result;
-    }
 
     public GameSession.Users GetActualUser()
     {
         return gameSession.GetActualUser();
+    }
+
+    public GameSession.Users GetUserOfCard()
+    {
+        return userOfCard;
     }
 }

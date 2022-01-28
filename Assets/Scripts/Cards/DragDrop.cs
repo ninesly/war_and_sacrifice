@@ -18,8 +18,7 @@ public class DragDrop : MonoBehaviour
 
     GameSession.Users user;
     Vector2 startPosition;
-    public bool isDragging = false;
-
+    bool isDragging = false;
    
     
 
@@ -30,14 +29,9 @@ public class DragDrop : MonoBehaviour
 
     void Start()
     {
-        Setup();
-    }
-
-    void Setup()
-    {
+        moveCards = GetComponent<MoveCards>();
         cardManager = GetComponent<CardObjectManager>();
         user = cardManager.GetUserOfCard();
-        moveCards = GetComponent<MoveCards>();
     }
 
     void Update()
@@ -116,7 +110,8 @@ public class DragDrop : MonoBehaviour
 
         // succesful drag - card is above proper Field
         // now we check if placing a card was succesful
-        if (!moveCards.AttemptToChangePlaceOfCard(dropZone))
+        Field fieldOfDropZone = dropZone.GetComponent<Field>();
+        if (!moveCards.AttemptToChangePlaceOfCard(fieldOfDropZone))
         {
             //unsuccesful placing
             TakeCardBack();
@@ -132,5 +127,6 @@ public class DragDrop : MonoBehaviour
     {
         return canvas;
     }
+    
   
 }

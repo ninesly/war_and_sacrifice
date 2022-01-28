@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   user: 0
-  cardsLimit: 0
+  cardsLimit: 1
 --- !u!1001 &9136029939496449402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23,7 +23,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6362607876594332214, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
       propertyPath: m_Name
-      value: Player Duel Field
+      value: Field_Drop Zone_Narrow_Duel Field [Variant^3]
       objectReference: {fileID: 0}
     - target: {fileID: 8837184040052003691, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
       propertyPath: m_Pivot.x

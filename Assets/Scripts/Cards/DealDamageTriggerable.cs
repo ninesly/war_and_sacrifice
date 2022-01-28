@@ -5,70 +5,42 @@ using UnityEngine;
 
 public class DealDamageTriggerable : MonoBehaviour
 {
-    public enum Target { EnemyFighter, EnemyHand }
-
-    int damage;
-    Target target;
+    int dmgAmount;
+    CardSOManager.Target target;
     DuelField targetField;
-    GameSession.Users userOfCard;
 
-    CardObjectManager targetCard;
+    CardSOManager my_cardSOManager;
+    CardSOManager target_CardSOManager;
 
-    public void Initialize(int dmgAmount, Target target)
+    private void Start()
     {
-        damage = dmgAmount;
+        my_cardSOManager = GetComponent<CardSOManager>();
+    }
+    public void Initialize(int dmgAmount, CardSOManager.Target target)
+    {
+        this.dmgAmount = dmgAmount;
         this.target = target;
-        userOfCard = GetComponent<CardObjectManager>().GetUserOfCard();
-        FindTargetField();
     }
 
     public void Attack(GameObject whoIsTrying)
     {
-        Debug.LogError(whoIsTrying.name + " tries to attack");
+        Debug.Log(whoIsTrying.name + " tries to attack");
 
-        FindTargetCard();
-        if (!targetCard)
+        targetField = my_cardSOManager.FindTargetField(target);
+        target_CardSOManager = my_cardSOManager.FindTargetCard(targetField);
+
+        if (!target_CardSOManager)
         {
-            Debug.LogError(gameObject.name + " can't find target card");
+            Debug.LogError(gameObject.name + " doesn't have target card to attack");
             return;
         }
-        targetCard.ReceiveDamage(damage);
+
+        target_CardSOManager.ReceiveDamage(dmgAmount, gameObject);
     }
 
-    void FindTargetCard()
-    {
-        if (!targetField)
-        {
-            Debug.LogError(gameObject.name + " can't find target field");
-            return;
-        }
-        targetCard = targetField.GetComponentInChildren<CardObjectManager>();
-        if (!targetCard)
-        {
-            Debug.LogError(gameObject.name + " can't find target card on " + targetField.gameObject.name);
-            return;
-        }
-    }
 
-    void FindTargetField()
-    {
-        if (target == Target.EnemyFighter)
-        {
-            DuelField[] duelFields = FindObjectsOfType<DuelField>();
 
-            foreach (DuelField duelField in duelFields)
-            {
-                var fieldComponent = duelField.GetComponent<Field>();
-                if (fieldComponent.GetUserOfField() != userOfCard)
-                {
-                    targetField = duelField;
-                    return;
-                }
-            }
-        } 
-        else if (target == Target.EnemyHand)
-        {
-            Debug.LogError("Target: EnemyHand - Not implemented");
-        }        
-    }
+
+
+
 }

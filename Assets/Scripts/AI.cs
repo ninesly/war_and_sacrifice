@@ -11,12 +11,12 @@ public class AI : MonoBehaviour
     [Header("AI rig")]
     [SerializeField] CardContainer enemyDeck;
     [SerializeField] Field enemyMainField;
-    [SerializeField] Field enemyDuelField;
+    [SerializeField] DuelField enemyDuelField;
     [SerializeField] Field enemySacrificeField;
     [SerializeField] Field enemyDiscardField;
 
     [Header("Debug only")]
-    [SerializeField] List<CardObjectManager> cardsInHand = new List<CardObjectManager>();
+    [SerializeField] List<CardSOManager> cardsInHand = new List<CardSOManager>();
 
     GameSession gameSession;
     DrawCards drawCardsComponent;
@@ -44,11 +44,11 @@ public class AI : MonoBehaviour
         Debug.Log("Aimy: Hey, it's my turn! yupee!");
 
         DrawCards();
-        //PlayFirstCard(); // just for testing
         SortMyCards();
+        //FightWithFirstCard(); // just for testing
         FightWithStrongestCard();
         SacrificeNextStrongestCard();
-        DiscardWeakestCard();
+        //DiscardWeakestCard();
 
         gameSession.NextTurn();
     }
@@ -58,24 +58,24 @@ public class AI : MonoBehaviour
     void DrawCards()
     {
         drawCardsComponent.OnClick();
+
+        CardSOManager[] allCardsObjects = enemyMainField.GetComponentsInChildren<CardSOManager>(); // take all Card's Objects
+
+        foreach (CardSOManager card in allCardsObjects)
+        {
+            cardsInHand.Add(card); // make a list of Cards Objects
+        }
     }
 
     void FightWithFirstCard()
     {
         if (EmptyHand()) return;
-        var firstCard = enemyMainField.GetComponentInChildren<CardObjectManager>();
+        CardSOManager firstCard = enemyMainField.GetComponentInChildren<CardSOManager>();
         PlayCard(firstCard, enemyDuelField);
     }
 
     void SortMyCards()
-    {        
-        CardObjectManager[] allCardsObjects = enemyMainField.GetComponentsInChildren<CardObjectManager>(); // take all Card's Objects
-        
-        foreach (CardObjectManager card in allCardsObjects)
-        {
-            cardsInHand.Add(card); // make a list of Cards Objects
-        }
-
+    {     
         cardsInHand.Sort(SortFunc); // sort it from the strongest to weakest
     }
 
@@ -100,7 +100,7 @@ public class AI : MonoBehaviour
 
     // -------------------------------------------------------------------------------- OTHER
 
-    int SortFunc (CardObjectManager cardA, CardObjectManager cardB)
+    int SortFunc (CardSOManager cardA, CardSOManager cardB)
     {
         int valueA = cardA.GetCardSO().cardStrength;
         int valueB = cardB.GetCardSO().cardStrength;
@@ -117,11 +117,15 @@ public class AI : MonoBehaviour
         return 0;
     }
 
-    void PlayCard(CardObjectManager chosenCard, Field field)
+    void PlayCard(CardSOManager chosenCard, Field field)
     {
-        cardsInHand.Remove(chosenCard);
+        if (!chosenCard.OrderToChangePlaceOfCard(field))
+        {
+            Debug.LogWarning("Aimy: That was unsuccesful play");
+            return;
+        }
 
-        chosenCard.AttemptToChangePlaceOfCard(field.gameObject);
+        cardsInHand.Remove(chosenCard); 
     }
 
     bool EmptyHand()

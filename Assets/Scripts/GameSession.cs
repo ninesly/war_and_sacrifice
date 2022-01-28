@@ -55,24 +55,25 @@ public class GameSession : MonoBehaviour
     void RoundCounter()
     {
         float roundProgression = (playerTurn + enemyTurn) / 2;
-        currentGameRound = Mathf.CeilToInt(roundProgression);
-
-        //testing
-        if(roundProgression == currentGameRound && currentGameRound != 0)
-        {
-            Debug.Log("TIME FOR DUEL!");
-            RunAbilitesOnCards();
-        }
-            
+        currentGameRound = Mathf.CeilToInt(roundProgression);            
     }
     void RunAbilitesOnCards()
     {
         // just for testing now
         DuelField[] duelfields = FindObjectsOfType<DuelField>();
+
+        if (!duelfields[0].CheckIfFieldLimitReached() || !duelfields[1].CheckIfFieldLimitReached()) 
+        {
+            Debug.Log("No duel. "+ duelfields[0].gameObject.name + ": " +duelfields[0].CheckIfFieldLimitReached() + duelfields[1].gameObject.name + ": " + duelfields[1].CheckIfFieldLimitReached());
+            return;
+        }
+
+        Debug.Log ("DUEL TIME!");
+        
         foreach (DuelField duelField in duelfields)
         {
-            Debug.Log(duelField.gameObject.name + " is trying to trigger ability");
-            var card = duelField.GetComponentInChildren<CardObjectManager>();
+            //Debug.Log(duelField.gameObject.name + " is trying to trigger ability");
+            var card = duelField.GetComponentInChildren<CardSOManager>();
             if (card)
             {
                 card.CM_TriggerAbility();
@@ -92,6 +93,8 @@ public class GameSession : MonoBehaviour
 
     public void NextTurn()
     {
+        RunAbilitesOnCards(); // testing
+
         var nextPlayer_Int = (int)whoIsPlaying + 1;
         if (nextPlayer_Int >= numberOfPlayer) nextPlayer_Int = 0;
         whoIsPlaying = (Users)nextPlayer_Int;
@@ -102,7 +105,9 @@ public class GameSession : MonoBehaviour
             buttonManager.SetButtons(true);
             return;
         }
-        buttonManager.SetButtons(false);        
+        buttonManager.SetButtons(false);
+
+        
     }
 
     public int GetCardsInField(Field targetField)
