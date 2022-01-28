@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1309dc3b8744604d92261ebd6b88658, type: 3}
-  m_Name: 5
+  m_Script: {fileID: 11500000, guid: fd94082df27c1364f80fa78fb90e6f05, type: 3}
+  m_Name: Simple Attack For 4
   m_EditorClassIdentifier: 
-  cardName: 5
-  cardHitpoints: 100
-  ability: {fileID: 11400000, guid: b88acc1d229619743b063bc69060e211, type: 2}
+  aName: Simple Attack
+  damage: 4
+  target: 0

@@ -138,14 +138,21 @@ public class TurnManager : MonoBehaviour
         foreach (DuelField duelField in duelfields)
         {            
             var card = duelField.GetComponentInChildren<CardSOManager>();
-            Debug.Log(card.gameObject.name + " is trying to trigger ability");
+            //Debug.Log(card.gameObject.name + " is trying to trigger ability");
 
-            /*if (card)
+            if (card)
             {
                 card.CM_TriggerAbility();
-                Debug.Log("Trigger Ability on " + card.gameObject.name);
-            }*/
+                Debug.Log(card.gameObject.name + " succesfully triggered its ability!");
+
+            }
+            else
+            {
+                Debug.LogError("There is no Card Object in Dueal Field");
+            }            
         }
+
+        Debug.Log("Judge: DuelPhase finished!");
     }
 
     // Get & Set 

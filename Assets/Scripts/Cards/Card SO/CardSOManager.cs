@@ -14,6 +14,11 @@ public class CardSOManager : CardObjectManager
         return cardSO;
     }
 
+    public int GetCardValue()
+    {
+        return cardSO.CountCardValue();
+    }
+
     public void SetCardSO(Card newCard, TurnManager.Users user)
     {
         cardSO = newCard;

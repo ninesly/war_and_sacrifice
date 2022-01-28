@@ -26,6 +26,8 @@ public class DealDamageTriggerable : MonoBehaviour
     {
         Debug.Log(whoIsTrying.name + " tries to attack");
 
+        if (!my_cardSOManager) my_cardSOManager = GetComponent<CardSOManager>();
+
         targetField = my_cardSOManager.FindTargetField(target);
         target_CardSOManager = my_cardSOManager.FindTargetCard(targetField);
 

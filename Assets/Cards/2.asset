@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1309dc3b8744604d92261ebd6b88658, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
-  cardStrength: 2
+  cardName: 2
   cardHitpoints: 100
-  ability: {fileID: 11400000, guid: 5cb3766c2fdacdd48a933a2395888fa7, type: 2}
+  ability: {fileID: 11400000, guid: f8400ed292f9174468b64f04a521ecd5, type: 2}

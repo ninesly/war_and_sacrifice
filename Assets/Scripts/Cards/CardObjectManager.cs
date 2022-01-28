@@ -36,7 +36,7 @@ public class CardObjectManager : MonoBehaviour
             Debug.LogWarning("There is no text component on " + gameObject.name);
             return;
         }
-        cardText.text = cardSO.cardStrength.ToString();
+        cardText.text = cardSO.cardName;
     }
 
     public void SetUserOfCard(TurnManager.Users userOfCard)

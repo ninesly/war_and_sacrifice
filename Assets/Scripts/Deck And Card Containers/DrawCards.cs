@@ -68,7 +68,7 @@ public class DrawCards : MonoBehaviour
     {
         GameObject newCard = Instantiate(cardObject, Vector3.zero, Quaternion.identity);
         newCard.transform.SetParent(targetField.transform, false);
-        string cardName = user + " Card " + cardSOToCreate.cardStrength;
+        string cardName = user + " Card " + cardSOToCreate.cardName;
         newCard.gameObject.name = cardName;
         newCard.GetComponent<CardObjectManager>().SetUserOfCard(user);
 

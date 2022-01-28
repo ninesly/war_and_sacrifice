@@ -10,6 +10,7 @@ public class AttackAbility : Ability
 
     DealDamageTriggerable dealDmg;
 
+
     public override void Initialize(GameObject obj)
     {
         dealDmg = obj.GetComponent<DealDamageTriggerable>();
@@ -24,5 +25,10 @@ public class AttackAbility : Ability
     public override void TriggerAbility(GameObject whoIsTrying)
     {
         dealDmg.Attack(whoIsTrying);
+    }
+
+    public override int GetValue()
+    {
+        return damage;
     }
 }
