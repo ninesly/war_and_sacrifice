@@ -46,8 +46,7 @@ public class TurnManager : MonoBehaviour
     {
         Debug.Log("Judge: " + whoIsPlaying + " finished turn.");
         lastUser = whoIsPlaying;
-        Proceed();     
-
+        Proceed();
     }
 
     void NextPhase()
@@ -88,7 +87,7 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Judge: New turn. " + whoIsPlaying + " is playing.");
     }
 
-    private void SetPlayersButton()
+    void SetPlayersButton()
     {
         if (whoIsPlaying == Users.Player)
         {
@@ -148,11 +147,6 @@ public class TurnManager : MonoBehaviour
             }*/
         }
     }
-
-
-
-
-
 
     // Get & Set 
     public void OnClick()
