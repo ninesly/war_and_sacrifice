@@ -29,10 +29,11 @@ public class CardSOManager : CardObjectManager
         Debug.Log("Card " + gameObject.name + " received damage of: " + damage + " from:" + attacker.name);
     }
 
-    public void CM_TriggerAbility()
+    public void CM_TriggerAbility(TurnManager.DuelSubphases subphase)
     {
-        cardSO.ability.Initialize(gameObject);
-        cardSO.ability.TriggerAbility(gameObject);
+        var ability = cardSO.GetAbility(subphase);
+        ability.Initialize(gameObject);
+        ability.TriggerAbility(gameObject);
     }
 
     public DuelField FindTargetField(Target target)

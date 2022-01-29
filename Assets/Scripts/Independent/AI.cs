@@ -32,13 +32,7 @@ public class AI : MonoBehaviour
         turnManager = FindObjectOfType<TurnManager>();
         drawCardsComponent = enemyDeck.GetComponent<DrawCards>();
     }
-
-    void Update()
-    {
-        Act();
-    }
-
-    private void Act()
+    public void Act()
     {
         if (turnManager.GetActualUser() != user) return; //check if it's your turn
         Debug.Log("Aimy: Hey, it's my turn! yupee!");
