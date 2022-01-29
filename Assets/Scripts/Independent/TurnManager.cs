@@ -255,7 +255,7 @@ public class TurnManager : MonoBehaviour
     {
         fighter.CM_TriggerAbility(subphase);
         Debug.Log(fighter.gameObject.name + " succesfully triggered its ability!");
-    } // this method communicate with CardSOManager script !!!!!!!!!!!!!!
+    } // this method communicate with CardSOManager script
 
     // Buttons and Triggers
     public void OnClick()

@@ -13,9 +13,6 @@ public abstract class Ability : ScriptableObject
 
     public abstract int GetValue();
 
-    public TurnManager.DuelSubphases GetSubphase()
-    {
-        return subphase;
-    }
+    public abstract TurnManager.DuelSubphases GetSubphase();
 
 }

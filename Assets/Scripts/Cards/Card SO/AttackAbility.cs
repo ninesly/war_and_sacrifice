@@ -31,4 +31,9 @@ public class AttackAbility : Ability
     {
         return damage;
     }
+
+    public override TurnManager.DuelSubphases GetSubphase()     
+    {
+        return subphase;
+    }
 }
