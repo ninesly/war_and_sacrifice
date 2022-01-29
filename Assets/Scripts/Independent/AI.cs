@@ -18,7 +18,7 @@ public class AI : MonoBehaviour
     [Header("Debug only")]
     [SerializeField] List<CardSOManager> cardsInHand = new List<CardSOManager>();
 
-    TurnManager gameSession;
+    TurnManager turnManager;
     DrawCards drawCardsComponent;
 
     void Start()
@@ -29,7 +29,7 @@ public class AI : MonoBehaviour
     void Setup()
     {
         gameObject.SetActive(isAlive);
-        gameSession = FindObjectOfType<TurnManager>();
+        turnManager = FindObjectOfType<TurnManager>();
         drawCardsComponent = enemyDeck.GetComponent<DrawCards>();
     }
 
@@ -40,7 +40,7 @@ public class AI : MonoBehaviour
 
     private void Act()
     {
-        if (gameSession.GetActualUser() != user) return; //check if it's your turn
+        if (turnManager.GetActualUser() != user) return; //check if it's your turn
         Debug.Log("Aimy: Hey, it's my turn! yupee!");
 
         DrawCards();
@@ -50,7 +50,7 @@ public class AI : MonoBehaviour
         //SacrificeNextStrongestCard();
         //DiscardWeakestCard();
 
-        gameSession.NextTurn();
+        turnManager.NextTurn();
     }
 
     // -------------------------------------------------------------------------------- AI ACTIONS

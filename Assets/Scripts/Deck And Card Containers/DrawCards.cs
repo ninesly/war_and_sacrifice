@@ -66,13 +66,18 @@ public class DrawCards : MonoBehaviour
 
     void CreateCardObject(Card cardSOToCreate)
     {
-        GameObject newCard = Instantiate(cardObject, Vector3.zero, Quaternion.identity);
-        newCard.transform.SetParent(targetField.transform, false);
-        string cardName = user + " Card " + cardSOToCreate.cardName;
-        newCard.gameObject.name = cardName;
-        newCard.GetComponent<CardObjectManager>().SetUserOfCard(user);
+        // instantiation of w new Card Objects
+        GameObject newCardOBject = Instantiate(cardObject, Vector3.zero, Quaternion.identity);
+        newCardOBject.transform.SetParent(targetField.transform, false);
 
-        // tie card object to scriptable object
-        newCard.GetComponent<CardSOManager>().SetCardSO(cardSOToCreate, user);
+        // setting a name for a Card Object
+        string cardName = user + " Card " + cardSOToCreate.cardName;
+        newCardOBject.gameObject.name = cardName;
+
+        // setting user of Card Object
+        newCardOBject.GetComponent<CardObjectManager>().SetUserOfCard(user);
+
+        // tying Card Object to Scriptable Object 
+        newCardOBject.GetComponent<CardSOManager>().SetCardSO(cardSOToCreate);
     }
 }

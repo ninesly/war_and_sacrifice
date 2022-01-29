@@ -2113,6 +2113,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6400434394460995588, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
+      propertyPath: roundPhase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400434394460995588, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
       propertyPath: currentPhaseText
       value: 
       objectReference: {fileID: 787900520}

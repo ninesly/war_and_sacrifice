@@ -19,7 +19,7 @@ public class CardSOManager : CardObjectManager
         return cardSO.CountCardValue();
     }
 
-    public void SetCardSO(Card newCard, TurnManager.Users user)
+    public void SetCardSO(Card newCard)
     {
         cardSO = newCard;
     }

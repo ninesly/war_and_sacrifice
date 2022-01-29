@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextTurnButton: {fileID: 0}
-  allButtons: []
+  proceedButton: {fileID: 0}
+  buttonsToDisable: []
 --- !u!114 &6400434394460995588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,11 +59,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f3cd2ea0360784cbf765f87bceda89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPhaseText: {fileID: 0}
   buttonManager: {fileID: 1107657719917818943}
   startingUser: 0
   randomStartingUser: 0
   numberOfPlayer: 2
+  numberOfRoundPhases: 2
   playerTurn: 0
   enemyTurn: 0
-  currentGameRound: 0
+  currentGameRound: 0.5
   whoIsPlaying: 0
+  lastUser: 0
+  roundPhase: 0
+  duelPhase: 0
