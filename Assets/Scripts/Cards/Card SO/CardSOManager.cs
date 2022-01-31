@@ -3,20 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class CardSOManager : CardObjectManager
+public class CardSOManager : MonoBehaviour
 {
     public enum Target { EnemyFighter, EnemyHand }
 
+    [Header("Debug Only")]
     [SerializeField] Card cardSO;
+    [SerializeField] int cardPriority;
+    [SerializeField] int hitPoints;
 
+    void Start()
+    {
+        //Debug.Log("Start at " + gameObject.name);
+        hitPoints = cardSO.cardHitpoints;
+    }
     public Card GetCardSO()
     {
         return cardSO;
     }
 
-    public int GetCardValue()
+    public int GetCardPriority()
     {
-        return cardSO.CountCardValue();
+        cardPriority = cardSO.CountCardPriority();
+        return cardPriority;
     }
 
     public void SetCardSO(Card newCard)
@@ -26,14 +35,13 @@ public class CardSOManager : CardObjectManager
 
     public void ReceiveDamage(int damage, GameObject attacker)
     {
+        hitPoints -= damage;
         Debug.Log("Card " + gameObject.name + " received damage of: " + damage + " from:" + attacker.name);
     }
 
     public void CM_TriggerAbility(TurnManager.DuelSubphases subphase)
     {
-        var ability = cardSO.GetAbility(subphase);
-        ability.Initialize(gameObject);
-        ability.TriggerAbility(gameObject);
+        cardSO.TriggerAbility(subphase, gameObject);
     }
 
     public DuelField FindTargetField(Target target)
@@ -45,7 +53,8 @@ public class CardSOManager : CardObjectManager
             foreach (DuelField duelField in duelFields)
             {
                 var fieldComponent = duelField.GetComponent<Field>();
-                if (fieldComponent.GetUserOfField() != userOfCard)
+                var COM = GetComponent<CardObjectManager>();
+                if (fieldComponent.GetUserOfField() != COM.GetUserOfCard())
                 {
                     return duelField;
                 }

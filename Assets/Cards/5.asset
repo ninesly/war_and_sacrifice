@@ -14,4 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: 5
   cardHitpoints: 100
-  ability: {fileID: 11400000, guid: b88acc1d229619743b063bc69060e211, type: 2}
+  cardAbilities:
+  - ability: {fileID: 11400000, guid: 5cb3766c2fdacdd48a933a2395888fa7, type: 2}
+    valueOverride: 0
+    valuePlusMod: 0
+    valueMultiplierMod: 5
+  - ability: {fileID: 11400000, guid: b291fe30827c7d54886cdb01545ee561, type: 2}
+    valueOverride: 0
+    valuePlusMod: 0
+    valueMultiplierMod: 5

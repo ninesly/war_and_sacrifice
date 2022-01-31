@@ -13,7 +13,7 @@ public class DragDrop : MonoBehaviour
     GameObject startParent;
     GameObject dropZone;
 
-    CardObjectManager cardManager;
+    CardObjectManager cardObjectManager;
 
     TurnManager.Users user;
     Vector2 startPosition;
@@ -28,8 +28,8 @@ public class DragDrop : MonoBehaviour
 
     void Start()
     {
-        cardManager = GetComponent<CardObjectManager>();
-        user = cardManager.GetUserOfCard();
+        cardObjectManager = GetComponent<CardObjectManager>();
+        user = cardObjectManager.GetUserOfCard();
     }
 
     void Update()
@@ -86,7 +86,7 @@ public class DragDrop : MonoBehaviour
 
     public void StartDrag() // by Event Trigger
     {
-        if (cardManager.GetActualUser() != user) return;
+        if (cardObjectManager.GetActualUser() != user) return;
 
         startPosition = transform.position;
         startParent = transform.parent.gameObject;
@@ -95,7 +95,7 @@ public class DragDrop : MonoBehaviour
 
     public void StopDrag() // by Event Trigger
     {
-        if (cardManager.GetActualUser() != user) return;
+        if (cardObjectManager.GetActualUser() != user) return;
 
         isDragging = false;     
 
@@ -109,7 +109,7 @@ public class DragDrop : MonoBehaviour
         // succesful drag - card is above proper Field
         // now we check if placing a card was succesful
         Field fieldOfDropZone = dropZone.GetComponent<Field>();
-        if (!cardManager.AttemptToChangePlaceOfCard(fieldOfDropZone))
+        if (!cardObjectManager.AttemptToChangePlaceOfCard(fieldOfDropZone))
         {
             //unsuccesful placing
             TakeCardBack();

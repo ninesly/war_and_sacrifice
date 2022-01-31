@@ -97,8 +97,8 @@ public class AI : MonoBehaviour
 
     int SortFunc (CardSOManager cardA, CardSOManager cardB)
     {
-        int valueA = cardA.GetCardValue();
-        int valueB = cardB.GetCardValue();
+        int valueA = cardA.GetCardPriority();
+        int valueB = cardB.GetCardPriority();
 
 
         if (valueA > valueB)

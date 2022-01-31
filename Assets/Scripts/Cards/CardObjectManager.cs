@@ -12,14 +12,14 @@ public class CardObjectManager : MonoBehaviour
     [Header("Debug Only")]
     [SerializeField] protected TurnManager.Users userOfCard;
 
-    TurnManager gameSession;
+    TurnManager turnManager;
 
     CardSOManager cardSOManager;
-    [SerializeField] TMP_Text cardText;    
+    TMP_Text cardText;    
 
     void Start()
     {
-        gameSession = FindObjectOfType<TurnManager>();
+        turnManager = FindObjectOfType<TurnManager>();
 
         cardSOManager = GetComponent<CardSOManager>();
         cardText = GetComponentInChildren<TMP_Text>();
@@ -82,7 +82,11 @@ public class CardObjectManager : MonoBehaviour
 
     public TurnManager.Users GetActualUser()
     {
-        return gameSession.GetActualUser();
+        if (!turnManager)
+        {
+            turnManager = FindObjectOfType<TurnManager>();
+        }
+        return turnManager.GetActualUser();
     }
 
     public TurnManager.Users GetUserOfCard()

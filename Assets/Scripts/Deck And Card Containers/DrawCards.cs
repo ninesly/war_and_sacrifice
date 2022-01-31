@@ -13,13 +13,13 @@ public class DrawCards : MonoBehaviour
 
     int cardsToDraw;
 
-    TurnManager gameSession;
+    TurnManager turnManager;
     Croupier croupier;
     
 
     void Start()
     {
-        gameSession = FindObjectOfType<TurnManager>();
+        turnManager = FindObjectOfType<TurnManager>();
         croupier = GetComponent<Croupier>();
     }
 
@@ -35,11 +35,11 @@ public class DrawCards : MonoBehaviour
 
     void DrawCardsFromContainer(int amount)
     {
-        if (gameSession.GetActualUser() != user) return;
+        if (turnManager.GetActualUser() != user) return;
 
         for (int cardToPick = 0; cardToPick < amount; cardToPick++)
         {
-            Card nextCardSO = originCardContainer.GetCardSOFromContainer();
+            Card nextCardSO = originCardContainer.GetFirstCardSOFromContainer();
 
             if (!nextCardSO)
             {
@@ -49,7 +49,7 @@ public class DrawCards : MonoBehaviour
                 {
                     //Debug.Log("Shuffle cards from discard");
                     croupier.ShuffleAllBackToContainer(discardCardContainer, originCardContainer);
-                    nextCardSO = originCardContainer.GetCardSOFromContainer();
+                    nextCardSO = originCardContainer.GetFirstCardSOFromContainer();
 
                     if (!nextCardSO)
                     {

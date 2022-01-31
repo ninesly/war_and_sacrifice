@@ -11,7 +11,7 @@ public class AttackAbility : Ability
     DealDamageTriggerable dealDmg;
 
 
-    public override void Initialize(GameObject obj)
+    public override void Initialize(GameObject obj, int cardDamage)
     {
         dealDmg = obj.GetComponent<DealDamageTriggerable>();
         if (!dealDmg)
@@ -19,7 +19,7 @@ public class AttackAbility : Ability
             Debug.LogError("There is no dealDmg");
             return;
         }
-        dealDmg.Initialize(damage, target);
+        dealDmg.Initialize(target, cardDamage);
     }
 
     public override void TriggerAbility(GameObject whoIsTrying)

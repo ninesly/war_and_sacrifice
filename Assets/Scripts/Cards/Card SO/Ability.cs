@@ -7,7 +7,7 @@ public abstract class Ability : ScriptableObject
     public string aName = "New Ability";
     public TurnManager.DuelSubphases subphase = TurnManager.DuelSubphases.Offensive;
 
-    public abstract void Initialize(GameObject obj);
+    public abstract void Initialize(GameObject obj, int damage);
 
     public abstract void TriggerAbility(GameObject obj);
 

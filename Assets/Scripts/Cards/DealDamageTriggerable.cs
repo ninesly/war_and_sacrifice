@@ -16,10 +16,10 @@ public class DealDamageTriggerable : MonoBehaviour
     {
         my_cardSOManager = GetComponent<CardSOManager>();
     }
-    public void Initialize(int dmgAmount, CardSOManager.Target target)
+    public void Initialize(CardSOManager.Target target, int dmgAmount)
     {
-        this.dmgAmount = dmgAmount;
         this.target = target;
+        this.dmgAmount = dmgAmount;
     }
 
     public void Attack(GameObject whoIsTrying)

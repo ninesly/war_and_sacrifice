@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aName: Revenge Attack
   subphase: 1
-  damage: 5
+  damage: 1
   target: 0

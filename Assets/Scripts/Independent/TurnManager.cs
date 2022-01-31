@@ -239,14 +239,14 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Judge: Duel Phase finished!");
     }
 
-    CardSOManager FindFighterOfUser(Users user)
+    CardSOManager FindFighterOfUser(Users user) // this method communicate with CardObjectManager script
     {
         foreach (DuelField duelField in duelfields)
         {
             var card = duelField.GetComponentInChildren<CardSOManager>();
             if (!card) Debug.LogError("There is no Card Object in Duel Field"); // that shouldnt happen, but let's have it just in case
 
-            if (card.GetUserOfCard() == user) return card;
+            if (card.GetComponent<CardObjectManager>().GetUserOfCard() == user) return card;
         }
         return null;
     }
@@ -254,7 +254,6 @@ public class TurnManager : MonoBehaviour
     void RunAbility(CardSOManager fighter, DuelSubphases subphase)
     {
         fighter.CM_TriggerAbility(subphase);
-        Debug.Log(fighter.gameObject.name + " succesfully triggered its ability!");
     } // this method communicate with CardSOManager script
 
     // Buttons and Triggers

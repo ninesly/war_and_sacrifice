@@ -61,7 +61,7 @@ public class CardContainer : MonoBehaviour
         CheckIfEmpty();
     }
 
-    public Card GetCardSOFromContainer()
+    public Card GetFirstCardSOFromContainer()
     {
         if (isEmpty) return null;
         
