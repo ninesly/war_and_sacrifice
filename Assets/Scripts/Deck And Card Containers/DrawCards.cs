@@ -80,4 +80,9 @@ public class DrawCards : MonoBehaviour
         // tying Card Object to Scriptable Object 
         newCardOBject.GetComponent<CardSOManager>().SetCardSO(cardSOToCreate);
     }
+
+    public CardContainer GetDiscardCardContainer()
+    {
+        return discardCardContainer;
+    }
 }

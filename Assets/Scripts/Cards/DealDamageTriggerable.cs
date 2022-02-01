@@ -6,7 +6,8 @@ using UnityEngine;
 public class DealDamageTriggerable : MonoBehaviour
 {
     int dmgAmount;
-    CardSOManager.Target target;
+    CardSOManager.TargetType targetType;
+    CardSOManager.DestroyType destroyType;
     DuelField targetField;
 
     CardSOManager my_cardSOManager;
@@ -16,10 +17,11 @@ public class DealDamageTriggerable : MonoBehaviour
     {
         my_cardSOManager = GetComponent<CardSOManager>();
     }
-    public void Initialize(CardSOManager.Target target, int dmgAmount)
+    public void Initialize(CardSOManager.TargetType targetType, int dmgAmount, CardSOManager.DestroyType destroyType)
     {
-        this.target = target;
+        this.targetType = targetType;
         this.dmgAmount = dmgAmount;
+        this.destroyType = destroyType;
     }
 
     public void Attack(GameObject whoIsTrying)
@@ -28,7 +30,7 @@ public class DealDamageTriggerable : MonoBehaviour
 
         if (!my_cardSOManager) my_cardSOManager = GetComponent<CardSOManager>();
 
-        targetField = my_cardSOManager.FindTargetField(target);
+        targetField = my_cardSOManager.FindTargetField(targetType);
         target_CardSOManager = my_cardSOManager.FindTargetCard(targetField);
 
         if (!target_CardSOManager)
@@ -37,7 +39,7 @@ public class DealDamageTriggerable : MonoBehaviour
             return;
         }
 
-        target_CardSOManager.ReceiveDamage(dmgAmount, gameObject);
+        target_CardSOManager.ReceiveDamage(dmgAmount, gameObject, destroyType);
     }
 
 

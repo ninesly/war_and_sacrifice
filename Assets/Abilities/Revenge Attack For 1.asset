@@ -15,4 +15,5 @@ MonoBehaviour:
   aName: Revenge Attack
   subphase: 1
   damage: 1
-  target: 0
+  targetType: 0
+  destroyType: 0

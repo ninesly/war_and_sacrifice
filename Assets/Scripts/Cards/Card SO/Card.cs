@@ -38,7 +38,7 @@ public class Card : ScriptableObject
         return 0;
     }
 
-    int GetFinalValue(CardAbility cardAbility)
+    int GetFinalValue (CardAbility cardAbility)
     {
         if (cardAbility.valueOverride > 0)
         {
