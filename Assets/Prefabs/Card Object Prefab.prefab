@@ -392,9 +392,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5fc7fcb4780ac4a8fc2ea0ba39d413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userOfCard: 0
-  cardText: {fileID: 0}
   cardSO: {fileID: 0}
+  cardPriority: 0
+  hitPoints: 0
 --- !u!114 &8753663082847342888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,4 +408,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userOfCard: 0
-  cardText: {fileID: 0}

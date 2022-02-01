@@ -1242,20 +1242,20 @@ PrefabInstance:
       objectReference: {fileID: 1445839955}
     - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
       propertyPath: cardsSO.Array.size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
       propertyPath: cardsSO.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: eaccc6ee12702aa4abdb966b443c2d33, type: 2}
+      objectReference: {fileID: 11400000, guid: 967c35d0627b3c54db6c04ff825e3428, type: 2}
     - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
       propertyPath: cardsSO.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 11a911a3210982f49bfe11674d1dcaca, type: 2}
+      objectReference: {fileID: 11400000, guid: eaccc6ee12702aa4abdb966b443c2d33, type: 2}
     - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
       propertyPath: cardsSO.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 967c35d0627b3c54db6c04ff825e3428, type: 2}
+      objectReference: {fileID: 11400000, guid: 11a911a3210982f49bfe11674d1dcaca, type: 2}
     - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
       propertyPath: cardsSO.Array.data[3]
       value: 
@@ -1267,7 +1267,23 @@ PrefabInstance:
     - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
       propertyPath: cardsSO.Array.data[5]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: ed2770b6cc989334ab3891bbf7457074, type: 2}
+    - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
+      propertyPath: cardsSO.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b3fcd7ea779aca4e8bc88b11afa93e7, type: 2}
+    - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
+      propertyPath: cardsSO.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: f242543d2845fc84cb4c1440a808c59d, type: 2}
+    - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
+      propertyPath: cardsSO.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f4b8e431981ed0428d6ce7fa38cdd90, type: 2}
+    - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
+      propertyPath: cardsSO.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6e18a621027bca04080bf819a8a1529c, type: 2}
     - target: {fileID: 4145506425999326894, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1735,6 +1751,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Main Field
       objectReference: {fileID: 0}
+    - target: {fileID: 7215432246769529340, guid: e54733755cbf24c41a26e63147773775, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e54733755cbf24c41a26e63147773775, type: 3}
 --- !u!1001 &1763455895
@@ -1858,12 +1878,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8828776318873013976, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
       propertyPath: cardsSO.Array.size
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8828776318873013976, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
       propertyPath: cardsSO.Array.data[4]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 383b13ed4ab843d4eb8cf6f4323b13bf, type: 2}
+    - target: {fileID: 8828776318873013976, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
+      propertyPath: cardsSO.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: ed2770b6cc989334ab3891bbf7457074, type: 2}
+    - target: {fileID: 8828776318873013976, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
+      propertyPath: cardsSO.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0b3fcd7ea779aca4e8bc88b11afa93e7, type: 2}
+    - target: {fileID: 8828776318873013976, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
+      propertyPath: cardsSO.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: f242543d2845fc84cb4c1440a808c59d, type: 2}
+    - target: {fileID: 8828776318873013976, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
+      propertyPath: cardsSO.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f4b8e431981ed0428d6ce7fa38cdd90, type: 2}
+    - target: {fileID: 8828776318873013976, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
+      propertyPath: cardsSO.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6e18a621027bca04080bf819a8a1529c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
 --- !u!114 &1970193259 stripped
@@ -1980,6 +2020,10 @@ PrefabInstance:
     - target: {fileID: 2775682969942427468, guid: 2809d47871470f149b56c93db61d5ee4, type: 3}
       propertyPath: m_Name
       value: Enemy Duel Field
+      objectReference: {fileID: 0}
+    - target: {fileID: 9147324701379579003, guid: 2809d47871470f149b56c93db61d5ee4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2809d47871470f149b56c93db61d5ee4, type: 3}

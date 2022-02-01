@@ -41,13 +41,23 @@ public class AI : MonoBehaviour
         SortMyCards();
         //FightWithFirstCard(); // just for testing
         FightWithStrongestCard();
+
         //SacrificeNextStrongestCard();
         //DiscardWeakestCard();
 
-        turnManager.NextTurn();
+        StartCoroutine(Wait());
+
+
     }
 
     // -------------------------------------------------------------------------------- AI ACTIONS
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        
+        turnManager.NextTurn();
+    }
 
     void DrawCards()
     {
