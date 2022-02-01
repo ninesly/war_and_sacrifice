@@ -45,20 +45,35 @@ public class CardSOManager : MonoBehaviour
     {
         hitPoints -= damage;
         Debug.Log("Card " + gameObject.name + " received damage of: " + damage + " from:" + attacker.name);
-
+        destroyType = CompareFighters(damage); // this method is only for War&Sacrifce
         DestroyHandler(destroyType);
+
+    }
+
+    DestroyType CompareFighters(int enemyCardValue) // this method is only for War&Sacrifce
+    {
+        Ability myCardAbility = cardSO.GetAbility(TurnManager.DuelSubphases.Offensive);
+        int myFinalAbilityValue = cardSO.GetAbilityFinalValue(myCardAbility);
+
+        if (enemyCardValue > myFinalAbilityValue)
+        {
+            return DestroyType.Permanent;
+        }
+
+        return DestroyType.Discard;
 
     }
 
     void DestroyHandler(DestroyType destroyType = DestroyType.Discard)
     {
         if (hitPoints > 0) return;
+        if (!COM) COM = GetComponent<CardObjectManager>();
 
         FindDiscards();
 
         if (destroyType == DestroyType.Permanent)
         {
-            Destroy(gameObject);
+            COM.DestroyThisCardObject();
             Debug.Log(gameObject.name + " permanently destroyed");
             return;
         }
@@ -68,7 +83,7 @@ public class CardSOManager : MonoBehaviour
             if (!targetDiscard) FindDiscards();
             targetDiscard.AddCardSOToContainer(cardSO);
             Debug.Log(gameObject.name + " captured");
-            Destroy(gameObject);
+            COM.DestroyThisCardObject();
             return;
         }
 
@@ -76,14 +91,13 @@ public class CardSOManager : MonoBehaviour
         if (!myDiscard) FindDiscards();
         myDiscard.AddCardSOToContainer(cardSO);
         Debug.Log(gameObject.name + " discarded");
-        Destroy(gameObject);
+        COM.DestroyThisCardObject();
     }
 
     private void FindDiscards()
     {
         var decks = FindObjectsOfType<Deck>();
-        if (!COM) COM = GetComponent<CardObjectManager>();
-
+        
         foreach (Deck deck in decks)
         {
             var discardContainer = deck.GetComponent<DrawCards>().GetDiscardCardContainer();

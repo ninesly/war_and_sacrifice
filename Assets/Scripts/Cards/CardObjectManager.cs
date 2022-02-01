@@ -71,11 +71,11 @@ public class CardObjectManager : MonoBehaviour
             if (!cardSOManager) cardSOManager = GetComponent<CardSOManager>();
             var cardSO = cardSOManager.GetCardSO();
             cardContainer.AddCardSOToContainer(cardSO);
-            DestroyThisObject();
+            DestroyThisCardObject();
         }
     }
 
-    void DestroyThisObject()
+    public void DestroyThisCardObject()
     {
         Destroy(gameObject);
     }

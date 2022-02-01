@@ -8,14 +8,14 @@ public class CardContainer : MonoBehaviour
 {
     [SerializeField] TurnManager.Users user;
     [SerializeField] List<Card> cardsSOInContainer = new List<Card>();
-    [SerializeField] Image coverImage;
+    [SerializeField] CardDummy cardDummy;
     [SerializeField] bool faceUpCards = false;
 
     bool isEmpty = false;
 
     void Start()
     {
-        if (!coverImage) Debug.LogError("This Card Container " + gameObject.name + " doesn't have cover image!");
+        if (!cardDummy) Debug.LogError("This Card Container " + gameObject.name + " doesn't have Card Dummy!");
 
         CheckIfEmpty();
     }
@@ -25,12 +25,12 @@ public class CardContainer : MonoBehaviour
         if (cardsSOInContainer.Count == 0)
         {
             isEmpty = true;
-            coverImage.gameObject.SetActive(false);
+            cardDummy.gameObject.SetActive(false);
             return;
         }
 
         isEmpty = false;
-        coverImage.gameObject.SetActive(true);
+        cardDummy.gameObject.SetActive(true);
         ChangeCoverImage();        
     }
 
@@ -39,8 +39,10 @@ public class CardContainer : MonoBehaviour
         if (faceUpCards)
         {
             var lastElement = cardsSOInContainer.Count-1;
-            coverImage.GetComponent<CardDummy>().SetCardSO_Dummy(cardsSOInContainer[lastElement]);
-        }   
+            cardDummy.SetCardSO_OnDummy(cardsSOInContainer[lastElement]);
+            return;
+        }
+        cardDummy.SetFaceDown();
     }
 
     public void AddCardSOToContainer(Card cardSO)

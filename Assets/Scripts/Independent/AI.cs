@@ -77,7 +77,8 @@ public class AI : MonoBehaviour
     void FightWithStrongestCard()
     {
         if (EmptyHand()) return;
-        PlayCard(cardsInHand[0], enemyDuelField);
+        Debug.Log("Aimy: I attack with " + cardsInHand[0].gameObject.name);
+        PlayCard(cardsInHand[0], enemyDuelField);        
     }
 
     void SacrificeNextStrongestCard()

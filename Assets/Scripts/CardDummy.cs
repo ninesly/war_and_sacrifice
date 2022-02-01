@@ -1,47 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 
 public class CardDummy : MonoBehaviour
 {
+    [SerializeField] Sprite faceDown;
     TMP_Text textComponent;
-    CardContainer cardContainer;
     Card cardSO;
+    
 
     void Start()
     {
-        textComponent = GetComponentInChildren<TMP_Text>();
-
-        cardContainer = GetComponentInParent<CardContainer>();
-        
+        textComponent = GetComponentInChildren<TMP_Text>();        
     }
 
-    public void SetCardSO_Dummy(Card cardSO)
+    public void SetCardSO_OnDummy(Card cardSO)
     {
         this.cardSO = cardSO;
-        UpdateCardInfo();
-        
+        UpdateCardInfo();       
     }
 
-    private void UpdateCardInfo()
+    void UpdateCardInfo()
     {
         textComponent.text = cardSO.cardName;
         // other info like image etc.
     }
 
-    /*void Update()
+    public void SetFaceDown()
     {
-        if (!cardContainer || !cardContainer.GetFirstCardSOFromContainer())
-        {
-            return;
-        }
+        GetComponent<Image>().sprite = faceDown;
+        textComponent.text = "";
+    }
 
-        if (!textComponent)
-        {
-            Debug.LogError(gameObject.name + ": There is no text component");
-            return;
-        }
-        */
 }

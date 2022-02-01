@@ -26,7 +26,7 @@ public class Card : ScriptableObject
         return priority;
     }
 
-    int GetAbilityValue(Ability ability)
+    public int GetAbilityFinalValue(Ability ability)
     {
         foreach (CardAbility cardAbility in cardAbilities)
         {
@@ -67,7 +67,7 @@ public class Card : ScriptableObject
         {
             if (cardAbility.ability.GetSubphase() == subphase)
             {
-                var cardDamage = GetAbilityValue(cardAbility.ability);
+                var cardDamage = GetAbilityFinalValue(cardAbility.ability);
                 cardAbility.ability.Initialize(whoIsTriggering, cardDamage);
                 cardAbility.ability.TriggerAbility(whoIsTriggering);
                 Debug.Log(whoIsTriggering.gameObject.name + " succesfully triggered its " + subphase +" ability!");
