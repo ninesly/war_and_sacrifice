@@ -6,7 +6,7 @@ using System;
 
 public class CardSOManager : MonoBehaviour
 {
-    public enum TargetType { EnemyFighter, EnemyBench }
+    public enum TargetType { OpponentFighter, OpponentBench, MyFighter, MyBench }
     public enum DestroyType { Discard, Permanent, Capture }
 
     [Header("Debug Only")]
@@ -47,7 +47,12 @@ public class CardSOManager : MonoBehaviour
         Debug.Log("Card " + gameObject.name + " received damage of: " + damage + " from:" + attacker.name);
         destroyType = CompareFighters(damage); // this method is only for War&Sacrifce
         DestroyHandler(destroyType);
+    }
 
+    public void AddBonus(int bonus, GameObject supporter)
+    {
+        //hitPoints -= damage;
+        Debug.Log("Card " + gameObject.name + " received bonus " + bonus + " from:" + supporter.name);
     }
 
     DestroyType CompareFighters(int enemyCardValue) // this method is only for War&Sacrifce
@@ -117,33 +122,65 @@ public class CardSOManager : MonoBehaviour
         cardSO.TriggerAbility(subphase, gameObject);
     }
 
-    public DuelField FindTargetField(TargetType target)
+    public Field FindTargetField(TargetType target)
     {
-        if (target == TargetType.EnemyFighter)
-        {
-            DuelField[] duelFields = FindObjectsOfType<DuelField>();
+        if (!COM) COM = GetComponent<CardObjectManager>();
 
-            foreach (DuelField duelField in duelFields)
+        Deck[] decks = FindObjectsOfType<Deck>();
+
+        if (target == TargetType.OpponentFighter)
+        {
+            foreach (Deck deck in decks)
             {
-                var fieldComponent = duelField.GetComponent<Field>();
-                if(!COM) COM = GetComponent<CardObjectManager>();
-                if (fieldComponent.GetUserOfField() != COM.GetUserOfCard())
+                if (deck.GetUserOfDeck() != COM.GetUserOfCard())
                 {
-                    return duelField;
+                    Field opponentDuelField = deck.GetDuelField();
+                    return opponentDuelField;
                 }
             }
         }
-        else if (target == TargetType.EnemyBench)
+
+        if (target == TargetType.MyFighter)
         {
-            Debug.LogError("Target: EnemyBench - Not yet implemented");
-            return null;
+            foreach (Deck deck in decks)
+            {
+                if (deck.GetUserOfDeck() == COM.GetUserOfCard())
+                {
+                    Field myDuelField = deck.GetDuelField();
+                    return myDuelField;
+                }
+            }
+        }
+
+        if (target == TargetType.OpponentBench)
+        {
+            foreach (Deck deck in decks)
+            {
+                if (deck.GetUserOfDeck() != COM.GetUserOfCard())
+                {
+                    Field opponentBenchField = deck.GetBenchField();
+                    return opponentBenchField;
+                }
+            }
+        }
+
+        if (target == TargetType.MyBench)
+        {
+            foreach (Deck deck in decks)
+            {
+                if (deck.GetUserOfDeck() == COM.GetUserOfCard())
+                {
+                    Field myBenchField = deck.GetBenchField();
+                    return myBenchField;
+                }
+            }
         }
 
         Debug.LogError(gameObject.name + " didn't specify target");
         return null;
     }
 
-    public CardSOManager FindTargetCard(DuelField targetField)
+    public CardSOManager FindTargetCard(Field targetField)
     {
         if (!targetField) return null;
 

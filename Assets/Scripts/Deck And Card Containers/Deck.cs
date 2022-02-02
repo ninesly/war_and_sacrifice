@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 public class Deck : MonoBehaviour
 {
+    [SerializeField] TurnManager.Users user;
+    [SerializeField] Field benchField;
+    [SerializeField] Field duelField;
     [SerializeField] List<Card> cardsSO = new List<Card>();
 
     CardContainer cardContainer;
@@ -24,5 +28,20 @@ public class Deck : MonoBehaviour
         }
 
         cardContainer.ShuffleCardsInContainer();
+    }
+
+    public Field GetBenchField()
+    {
+        return benchField;
+    }
+
+    public Field GetDuelField()
+    {
+        return duelField;
+    }
+
+    public TurnManager.Users GetUserOfDeck()
+    {
+        return user;
     }
 }

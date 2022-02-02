@@ -87,28 +87,28 @@ public class TurnManager : MonoBehaviour
     [SerializeField] int roundPhase = 1;
     [SerializeField] int duelPhase = 0;
 
-    DuelField[] duelfields;
 
     AI aiScript;
+    Deck[] decks;
 
     void Start()
     {
         aiScript = FindObjectOfType<AI>();
 
-        SetDuelFields();
+        SetDecks();
         StartGame();
     }
 
-    void SetDuelFields()
+    void SetDecks()
     {
-        duelfields = FindObjectsOfType<DuelField>();
+        decks = FindObjectsOfType<Deck>();
     }
 
     void StartGame()
     {
         if (randomStartingUser) // choose random starting player  
         {
-            var coinThrow = Random.Range(0, numberOfPlayer); 
+            var coinThrow = UnityEngine.Random.Range(0, numberOfPlayer); 
             startingUser = (Users)coinThrow;
         } 
 
@@ -211,9 +211,9 @@ public class TurnManager : MonoBehaviour
         // checks if there is cards in each Duel Field
         // not universal, works only with two users
 
-        if (!duelfields[0].CheckIfFieldLimitReached() || !duelfields[1].CheckIfFieldLimitReached())
+        if (!decks[0].GetDuelField().CheckIfFieldLimitReached() || !decks[1].GetDuelField().CheckIfFieldLimitReached())
         {
-            Debug.Log("Judge: No duel. " + duelfields[0].gameObject.name + ": " + duelfields[0].CheckIfFieldLimitReached() + duelfields[1].gameObject.name + ": " + duelfields[1].CheckIfFieldLimitReached());
+            Debug.Log("Judge: No duel.");
             return false;
         }
 
@@ -227,7 +227,13 @@ public class TurnManager : MonoBehaviour
         CardSOManager attacker = FindFighterOfUser(whoIsPlaying);
         CardSOManager defender = FindFighterOfUser(previousUser);
 
+        // setting bench
+        CardSOManager attackerBench = FindBenchCardOfUser(whoIsPlaying);
+        CardSOManager defenderBench = FindBenchCardOfUser(previousUser);
+
         // Duel Subphase 1 - Bench Abilities
+        if (attackerBench) RunAbility(attackerBench, DuelSubphases.Bench);
+        if (defenderBench) RunAbility(defenderBench, DuelSubphases.Bench);
 
         // Duel Subphase 2 - Attacker Abilities
         RunAbility(attacker, DuelSubphases.Offensive);
@@ -241,19 +247,41 @@ public class TurnManager : MonoBehaviour
 
     CardSOManager FindFighterOfUser(Users user) // this method communicate with CardObjectManager script
     {
-        foreach (DuelField duelField in duelfields)
+        foreach (Deck deck in decks)
         {
-            var card = duelField.GetComponentInChildren<CardSOManager>();
-            if (!card) Debug.LogError("There is no Card Object in Duel Field"); // that shouldnt happen, but let's have it just in case
-
-            if (card.GetComponent<CardObjectManager>().GetUserOfCard() == user) return card;
+            if (deck.GetUserOfDeck() == user)
+            {
+                CardSOManager card = deck.GetDuelField().GetComponentInChildren<CardSOManager>();
+                return card;
+            }
         }
+
+        Debug.LogError("Couldn't find any matching Fighter card object for user: " + user);
+        return null;
+    }
+  
+    CardSOManager FindBenchCardOfUser(Users user) // this method communicate with CardObjectManager script
+    {
+        foreach (Deck deck in decks)
+        {
+            if (deck.GetUserOfDeck() == user)
+            {
+                CardSOManager card = deck.GetBenchField().GetComponentInChildren<CardSOManager>();
+
+                if (!card) Debug.Log(user + "doesn't have any card in bench");
+
+                return card;
+            }
+        }
+
         return null;
     }
 
-    void RunAbility(CardSOManager fighter, DuelSubphases subphase)
+
+
+    void RunAbility(CardSOManager card, DuelSubphases subphase)
     {
-        fighter.CM_TriggerAbility(subphase);
+        card.CM_TriggerAbility(subphase);
     } // this method communicate with CardSOManager script
 
     // Buttons and Triggers
@@ -286,3 +314,4 @@ public class TurnManager : MonoBehaviour
         buttonManager.SetNextTurnButton(state);
     }
 }
+

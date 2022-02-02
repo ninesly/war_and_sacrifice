@@ -15,7 +15,8 @@ using UnityEngine;
 public abstract class Ability : ScriptableObject
 {
     public string aName = "New Ability";
-    public TurnManager.DuelSubphases subphase = TurnManager.DuelSubphases.Offensive; // this is an element that needs to be updated according to a game mechanic, important for TurnManager script
+    public CardSOManager.TargetType targetType; // element that needs to be updated according to a game mechanic, important for TurnManager script
+    public TurnManager.DuelSubphases subphase = TurnManager.DuelSubphases.Offensive; // likewise
 
     public abstract void Initialize(GameObject obj, int damage);
 

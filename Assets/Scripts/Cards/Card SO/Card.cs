@@ -67,8 +67,8 @@ public class Card : ScriptableObject
         {
             if (cardAbility.ability.GetSubphase() == subphase)
             {
-                var cardDamage = GetAbilityFinalValue(cardAbility.ability);
-                cardAbility.ability.Initialize(whoIsTriggering, cardDamage);
+                var cardFinalValue = GetAbilityFinalValue(cardAbility.ability);
+                cardAbility.ability.Initialize(whoIsTriggering, cardFinalValue);
                 cardAbility.ability.TriggerAbility(whoIsTriggering);
                 Debug.Log(whoIsTriggering.gameObject.name + " succesfully triggered its " + subphase +" ability!");
                 return;

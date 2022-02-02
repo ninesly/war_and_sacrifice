@@ -10,8 +10,7 @@ using UnityEngine;
 public class AttackAbility : Ability
 {
     [SerializeField] int damage = 1; // basic dmg for ability, it can be later altered by owner of the ability
-    [SerializeField] CardSOManager.TargetType targetType; // element that needs to be updated according to a game mechanic, important for TurnManager script
-    [SerializeField] CardSOManager.DestroyType destroyType; // likewise
+    [SerializeField] CardSOManager.DestroyType destroyType; // element that needs to be updated according to a game mechanic, important for TurnManager script
 
     DealDamageTriggerable dealDmg;
 
@@ -21,15 +20,17 @@ public class AttackAbility : Ability
         dealDmg = obj.GetComponent<DealDamageTriggerable>();
         if (!dealDmg)
         {
-            Debug.LogError("There is no dealDmg");
+            Debug.LogError("There is no " + dealDmg);
             return;
         }
-        dealDmg.Initialize(targetType, finalDamage, destroyType);
+        dealDmg.Initialize(targetType, finalDamage);
+        dealDmg.SetDestroyType(destroyType);
     }
 
     public override void TriggerAbility(GameObject whoIsTrying)
     {
-        dealDmg.Attack(whoIsTrying);
+        Debug.Log(whoIsTrying + " uses " + name);
+        dealDmg.UseAbility();
     }
 
     public override int GetValue()
@@ -37,7 +38,7 @@ public class AttackAbility : Ability
         return damage;
     }
 
-    public override TurnManager.DuelSubphases GetSubphase()     
+    public override TurnManager.DuelSubphases GetSubphase()
     {
         return subphase;
     }
