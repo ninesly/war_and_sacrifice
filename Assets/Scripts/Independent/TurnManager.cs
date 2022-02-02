@@ -29,6 +29,8 @@ using TMPro;
  * Whole gameplay loop:
  * 
  * Starting Round (0) [setup of the starting user]
+ *      RoundPhase 0
+ *          <DRAW CARDS METHOD>
  *      RoundPhase 1 - User Phase
  *          Starting Player Turn (1)
  *          <NEXT TURN METHOD>
@@ -38,12 +40,16 @@ using TMPro;
  *          Duel Subphase 3 - Attacker Abilities
  *          Duel Subphase 4 - Comparision
  * Round (1)
+ *      RoundPhase 0
+ *          <DRAW CARDS METHOD>
  *      RoundPhase 1 - User Phase
  *          Enemy Turn (1)
  *          <NEXT TURN METHOD>
  *      RoundPhase 2 - Duel Phase
  *          Duel Subphases
  *          [...]
+ *      RoundPhase 0
+ *          <DRAW CARDS METHOD>
  *      RoundPhase 1 - User Phase
  *          Player Turn (2)
  *          <NEXT TURN METHOD>
@@ -51,12 +57,15 @@ using TMPro;
  *          Duel Subphases
  *          [...]
  * Round (2)
+ *      RoundPhase 0
+ *          <DRAW CARDS METHOD>
  *      RoundPhase 1 - User Phase
  *          Enemy Turn (2)
  *          <NEXT TURN METHOD>
  *      RoundPhase 2 - Duel Phase
  *          Duel Subphases
  *          [...]
+ *          <DRAW CARDS METHOD>
  *      RoundPhase 1 - User Phase
  *          Player Turn (3)
  *          <NEXT TURN METHOD>
@@ -84,31 +93,42 @@ public class TurnManager : MonoBehaviour
     [SerializeField] float currentGameRound = 0.5f;
     [SerializeField] Users whoIsPlaying;
     [SerializeField] Users previousUser;
-    [SerializeField] int roundPhase = 1;
+    [SerializeField] int roundPhase = 0;
     [SerializeField] int duelPhase = 0;
 
 
     AI aiScript;
     Deck[] decks;
 
+    bool startingRound;
+
     void Start()
     {
-        aiScript = FindObjectOfType<AI>();
-
-        SetDecks();
+        Setup();
         StartGame();
     }
 
-    void SetDecks()
+    void Setup()
     {
+        aiScript = FindObjectOfType<AI>();
         decks = FindObjectsOfType<Deck>();
+    }
+
+    void SetAllDrapDrops(bool state)
+    {
+        var allDragDrops = FindObjectsOfType<DragDrop>();
+
+        foreach (DragDrop dragDrop in allDragDrops)
+        {
+            dragDrop.enabled = state;
+        }
     }
 
     void StartGame()
     {
         if (randomStartingUser) // choose random starting player  
         {
-            var coinThrow = UnityEngine.Random.Range(0, numberOfPlayer); 
+            var coinThrow = Random.Range(0, numberOfPlayer); 
             startingUser = (Users)coinThrow;
         } 
 
@@ -117,8 +137,11 @@ public class TurnManager : MonoBehaviour
 
         currentPhaseText.text = "Starting round. " + whoIsPlaying + " turn";
 
+        startingRound = true;
+
         // helping tool for debugging. Delete or comment out later
-        buttonManager.SetProceedButton(false);
+        //buttonManager.SetProceedButton(false);
+
     } // this method communicate with ButtonManager script
 
     public void NextTurn() // triggered by button pushed by Player (OnClick) or by AI script
@@ -133,15 +156,20 @@ public class TurnManager : MonoBehaviour
 
     void NextRoundPhase()
     {
-        buttonManager.SetProceedButton(false);
-
-        if (roundPhase == 1) // User Phase (interactable)
-        {         
-            DecidingWhoIsNowPlaying(); // checking if it's Player or Enemy Turn
+        if (roundPhase == 0) // Card Draw Phase (button)
+        {
+            buttonManager.SetDrawCardsButton(true);
+            SetAllDrapDrops(false);
+            if (!startingRound) DecidingWhoIsNowPlaying(); // checking if it's Player or Enemy Turn
             TurnCounter(whoIsPlaying);
+        }
+        else if (roundPhase == 1) // User Phase (interactable)
+        {
+            SetAllDrapDrops(true);
             SetPlayersButton(); // if player - enabling buttons
-            
+            buttonManager.SetDrawCardsButton(false);
             currentPhaseText.text = Mathf.FloorToInt(currentGameRound) + " round. " + whoIsPlaying + " turn";
+            startingRound = false;
         }
         else if (roundPhase == 2) // Duel Phase (not interactable)
         {
@@ -298,7 +326,7 @@ public class TurnManager : MonoBehaviour
     public void Proceed()
     {
         roundPhase++;
-        if (roundPhase > numberOfRoundPhases) roundPhase = 1; 
+        if (roundPhase > numberOfRoundPhases) roundPhase = 0; 
         NextRoundPhase();
     }
 

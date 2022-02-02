@@ -7,6 +7,7 @@ public class ButtonManager : MonoBehaviour
 {
     [SerializeField] Button nextTurnButton;
     [SerializeField] Button proceedButton;
+    [SerializeField] Button[] drawCardsButtons;
 
     [SerializeField] Button[] buttonsToDisable;
 
@@ -31,5 +32,13 @@ public class ButtonManager : MonoBehaviour
     public void SetProceedButton(bool state)
     {
         proceedButton.interactable = state;
+    }
+
+    public void SetDrawCardsButton(bool state)
+    {
+        foreach (Button button in drawCardsButtons)
+        {
+            button.interactable = state;
+        }
     }
 }

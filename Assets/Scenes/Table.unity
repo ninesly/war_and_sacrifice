@@ -584,6 +584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button Proceed
       objectReference: {fileID: 0}
+    - target: {fileID: 3682809126185789007, guid: 2b9d0c7464a09fd46812ac2c10fac93c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3682809126760990758, guid: 2b9d0c7464a09fd46812ac2c10fac93c, type: 3}
       propertyPath: m_text
       value: 'Proceed
@@ -2183,6 +2187,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1107657719917818943, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
+      propertyPath: drawCardsButtons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107657719917818943, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
       propertyPath: buttonsToDisable.Array.data[0]
       value: 
       objectReference: {fileID: 5969912079852683079}
@@ -2192,6 +2200,14 @@ PrefabInstance:
       objectReference: {fileID: 1327185034}
     - target: {fileID: 1107657719917818943, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
       propertyPath: buttonsToDisable.Array.data[2]
+      value: 
+      objectReference: {fileID: 259153691}
+    - target: {fileID: 1107657719917818943, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
+      propertyPath: drawCardsButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1327185034}
+    - target: {fileID: 1107657719917818943, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
+      propertyPath: drawCardsButtons.Array.data[1]
       value: 
       objectReference: {fileID: 259153691}
     - target: {fileID: 2867097263238702896, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
@@ -2241,10 +2257,6 @@ PrefabInstance:
     - target: {fileID: 2867097263238702902, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6400434394460995588, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
-      propertyPath: roundPhase
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6400434394460995588, guid: fba4a20f35acd20489a048d16bf6471d, type: 3}
       propertyPath: currentPhaseText

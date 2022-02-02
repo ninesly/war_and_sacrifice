@@ -31,6 +31,7 @@ public class DrawCards : MonoBehaviour
 
         Debug.Log("Draw " + cardsToDraw + " cards");
         DrawCardsFromContainer(cardsToDraw);
+        turnManager.Proceed();
     }
 
     void DrawCardsFromContainer(int amount)
@@ -85,4 +86,6 @@ public class DrawCards : MonoBehaviour
     {
         return discardCardContainer;
     }
+
+
 }
