@@ -45,6 +45,27 @@ public class DragDrop : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Drop Zone") && isDragging)
         {
+            // card is above Drop Zone 
+            // now we check if the Drop Zone belongs to current user
+            Field field = collision.gameObject.GetComponent<Field>();            
+
+            if (cardObjectManager.GetActualUser() != field.GetUserOfField())
+            {
+                return;
+            }
+
+            if (!field)
+            {
+                CardContainer cardContainer = collision.gameObject.GetComponent<CardContainer>();
+                if (cardObjectManager.GetActualUser() != cardContainer.GetUserOfContainer())
+                {
+                    return;
+                }
+
+            } 
+
+            // if field or cardcontainter user is the same as current user then proceed
+
             dropZone = collision.gameObject;
             ShowHighlight(dropZone);
         }

@@ -13,15 +13,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6208008061463839343, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
       propertyPath: m_Name
-      value: Field_Drop Zone Narrow  [Variant^2]
+      value: Field_Drop Zone_Narrow  [Variant^2]
       objectReference: {fileID: 0}
     - target: {fileID: 6355122291489031210, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
       propertyPath: m_Size.x
-      value: 142.20996
+      value: 49.671143
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355122291489031210, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
+      propertyPath: m_Size.y
+      value: 151.25952
       objectReference: {fileID: 0}
     - target: {fileID: 6355122291489031210, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
       propertyPath: m_Offset.x
-      value: 3.0344238
+      value: 3.034546
+      objectReference: {fileID: 0}
+    - target: {fileID: 6355122291489031210, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
+      propertyPath: m_Offset.y
+      value: 7.137329
       objectReference: {fileID: 0}
     - target: {fileID: 7288627257300469279, guid: d82daaaa13c70644cac67548e5e201a4, type: 3}
       propertyPath: cardsLimit
