@@ -42,7 +42,7 @@ public class AI : MonoBehaviour
         //FightWithFirstCard(); // just for testing
         FightWithStrongestCard();
 
-        //SacrificeNextStrongestCard();
+        SacrificeNextStrongestCard();
         //DiscardWeakestCard();
 
         StartCoroutine(Wait());

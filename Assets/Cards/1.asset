@@ -13,13 +13,17 @@ MonoBehaviour:
   m_Name: 1
   m_EditorClassIdentifier: 
   cardName: 1
-  cardHitpoints: 1
+  cardHitpoints: 100
   cardAbilities:
   - ability: {fileID: 11400000, guid: 5cb3766c2fdacdd48a933a2395888fa7, type: 2}
     valueOverride: 0
     valuePlusMod: 0
     valueMultiplierMod: 1
   - ability: {fileID: 11400000, guid: b291fe30827c7d54886cdb01545ee561, type: 2}
+    valueOverride: 0
+    valuePlusMod: 0
+    valueMultiplierMod: 1
+  - ability: {fileID: 11400000, guid: de40043ba8659944eb427d5fa07fcde9, type: 2}
     valueOverride: 0
     valuePlusMod: 0
     valueMultiplierMod: 1

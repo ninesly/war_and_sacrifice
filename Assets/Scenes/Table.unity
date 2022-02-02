@@ -809,6 +809,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1a3fc4a7fee67478046231ee6dc20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &444888739 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 845714329, guid: 2809d47871470f149b56c93db61d5ee4, type: 3}
+  m_PrefabInstance: {fileID: 9136029939663528491}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c88480d66a15f24181db2313c05ecdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,6 +1235,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c88480d66a15f24181db2313c05ecdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1104794778 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7732020339169719878, guid: 7a2daae720224ea4ea245f52e2f98521, type: 3}
+  m_PrefabInstance: {fileID: 89596997}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45056178319545141b277b26a10700e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1132324039 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5586779453318263387, guid: 1a24410f6d92db3488a0e1b1b092235b, type: 3}
@@ -1240,6 +1262,14 @@ PrefabInstance:
       propertyPath: targetCardContainer
       value: 
       objectReference: {fileID: 1445839955}
+    - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
+      propertyPath: duelField
+      value: 
+      objectReference: {fileID: 444888739}
+    - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
+      propertyPath: benchField
+      value: 
+      objectReference: {fileID: 1104794778}
     - target: {fileID: 1371476308881664771, guid: eeb7f475a1d9ffc4f9f01ce2fd1221c8, type: 3}
       propertyPath: cardsSO.Array.size
       value: 10
@@ -1876,6 +1906,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8828776318873013976, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
+      propertyPath: duelField
+      value: 
+      objectReference: {fileID: 966834656}
+    - target: {fileID: 8828776318873013976, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
+      propertyPath: benchField
+      value: 
+      objectReference: {fileID: 89821756}
     - target: {fileID: 8828776318873013976, guid: 2f6be53e4e3208547bfcb52d57980ac4, type: 3}
       propertyPath: cardsSO.Array.size
       value: 10

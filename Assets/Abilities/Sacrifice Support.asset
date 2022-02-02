@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 524a23fee28b2194098e0ad9653dc91d, type: 3}
   m_Name: Sacrifice Support
   m_EditorClassIdentifier: 
-  aName: New Ability
-  targetType: 0
-  subphase: 0
+  aName: Sacrifice
+  targetType: 2
+  subphase: 2
   bonus: 1

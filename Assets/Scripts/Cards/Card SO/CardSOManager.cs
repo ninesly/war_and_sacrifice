@@ -13,6 +13,7 @@ public class CardSOManager : MonoBehaviour
     [SerializeField] Card cardSO;
     [SerializeField] int cardPriority;
     [SerializeField] int hitPoints;
+    [SerializeField] int dmgBonus;
 
     CardContainer targetDiscard;
     CardContainer myDiscard;
@@ -42,36 +43,42 @@ public class CardSOManager : MonoBehaviour
     }
 
     public void ReceiveDamage(int damage, GameObject attacker, DestroyType destroyType)
-    {
-        hitPoints -= damage;
+    {        
         Debug.Log("Card " + gameObject.name + " received damage of: " + damage + " from:" + attacker.name);
-        destroyType = CompareFighters(damage); // this method is only for War&Sacrifce
-        DestroyHandler(destroyType);
+        ChangeHealth(-damage, destroyType);
     }
 
-    public void AddBonus(int bonus, GameObject supporter)
+    void ChangeHealth(int amount, DestroyType destroyType = DestroyType.Discard)
     {
-        //hitPoints -= damage;
-        Debug.Log("Card " + gameObject.name + " received bonus " + bonus + " from:" + supporter.name);
-    }
-
-    DestroyType CompareFighters(int enemyCardValue) // this method is only for War&Sacrifce
-    {
-        Ability myCardAbility = cardSO.GetAbility(TurnManager.DuelSubphases.Offensive);
-        int myFinalAbilityValue = cardSO.GetAbilityFinalValue(myCardAbility);
-
-        if (enemyCardValue > myFinalAbilityValue)
+        hitPoints += amount;
+        if (hitPoints <= 0)
         {
-            return DestroyType.Permanent;
+            Debug.Log(gameObject.name + "lost all hitpoints.");
+            DestroyHandler(destroyType);
         }
 
-        return DestroyType.Discard;
+    }
+    public void AddBonus(int bonus, GameObject supporter)
+    {
+        dmgBonus = bonus;
+        Debug.Log(gameObject.name + " received bonus " + bonus + " from:" + supporter.name);
+        supporter.GetComponent<CardObjectManager>().DestroyThisCardObject();
+    }
+
+    public void CompareFighters(int opponentHitpoints) // this method is only for War&Sacrifce
+    {
+        if (opponentHitpoints > hitPoints)
+        {
+            DestroyHandler(DestroyType.Permanent);
+            return;
+        }
+
+        DestroyHandler(DestroyType.Discard);
 
     }
 
-    void DestroyHandler(DestroyType destroyType = DestroyType.Discard)
+    void DestroyHandler(DestroyType destroyType)
     {
-        if (hitPoints > 0) return;
         if (!COM) COM = GetComponent<CardObjectManager>();
 
         FindDiscards();
@@ -119,7 +126,7 @@ public class CardSOManager : MonoBehaviour
 
     public void CM_TriggerAbility(TurnManager.DuelSubphases subphase)
     {
-        cardSO.TriggerAbility(subphase, gameObject);
+        cardSO.TriggerAbility(subphase, gameObject, dmgBonus);
     }
 
     public Field FindTargetField(TargetType target)
@@ -192,6 +199,12 @@ public class CardSOManager : MonoBehaviour
         }
 
         return target_CardSOManager;
+    }
+
+
+    public int GetHitpoints()
+    {
+        return hitPoints;
     }
 
 }

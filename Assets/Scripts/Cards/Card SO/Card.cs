@@ -20,25 +20,25 @@ public class Card : ScriptableObject
         int abilitiesSumValue = 0;
         foreach (CardAbility cardAbility in cardAbilities)
         {
-            abilitiesSumValue += GetFinalValue(cardAbility);
+            abilitiesSumValue += GetValueBeforeBonus(cardAbility);
         }
         int priority = abilitiesSumValue * cardHitpoints;
         return priority;
     }
 
-    public int GetAbilityFinalValue(Ability ability)
+    public int GetCardAbilityValueBeforeBonus(Ability ability)
     {
         foreach (CardAbility cardAbility in cardAbilities)
         {
             if (cardAbility.ability == ability)
             {
-                return GetFinalValue(cardAbility);
+                return GetValueBeforeBonus(cardAbility);
             }
         }
         return 0;
     }
 
-    int GetFinalValue (CardAbility cardAbility)
+    int GetValueBeforeBonus (CardAbility cardAbility)
     {
         if (cardAbility.valueOverride > 0)
         {
@@ -61,13 +61,13 @@ public class Card : ScriptableObject
         return null;
     }
 
-    public void TriggerAbility(TurnManager.DuelSubphases subphase, GameObject whoIsTriggering)
+    public void TriggerAbility(TurnManager.DuelSubphases subphase, GameObject whoIsTriggering, int bonus = 0)
     {
         foreach (CardAbility cardAbility in cardAbilities)
         {
             if (cardAbility.ability.GetSubphase() == subphase)
             {
-                var cardFinalValue = GetAbilityFinalValue(cardAbility.ability);
+                var cardFinalValue = GetCardAbilityValueBeforeBonus(cardAbility.ability) + bonus;
                 cardAbility.ability.Initialize(whoIsTriggering, cardFinalValue);
                 cardAbility.ability.TriggerAbility(whoIsTriggering);
                 Debug.Log(whoIsTriggering.gameObject.name + " succesfully triggered its " + subphase +" ability!");

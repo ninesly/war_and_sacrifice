@@ -23,8 +23,8 @@ using TMPro;
  * 
  * Subphase - smallest unit of gameplay
  * Only Duel Phase divides into subphases. 
- * Duel Subphases: Bench Abilities, Defender defensive Abilities, Attacker Abilities,
- * Defender offensive Abilities.
+ * Duel Subphases: Bench Abilities, Defender defensive Abilities, Attacker Abilities and
+ * Comparision (result of duel)
  * 
  * Whole gameplay loop:
  * 
@@ -36,7 +36,7 @@ using TMPro;
  *          Duel Subphase 1 - Bench Abilities
  *          Duel Subphase 2 - Defender defensive Abilities
  *          Duel Subphase 3 - Attacker Abilities
- *          Duel Subphase 4 - Defender offensive Abilities
+ *          Duel Subphase 4 - Comparision
  * Round (1)
  *      RoundPhase 1 - User Phase
  *          Enemy Turn (1)
@@ -241,6 +241,11 @@ public class TurnManager : MonoBehaviour
         // Duel Subphase 3 - Defender defensive Abilities
         RunAbility(defender, DuelSubphases.Defensive);
 
+        // Duel Subphase 4 - Comparision of lefted hitpoints of each fighters 
+        // and discarding/destroying cards
+        // [only for War&Sacrifce]
+        attacker.CompareFighters(defender.GetHitpoints());
+        defender.CompareFighters(attacker.GetHitpoints());
 
         Debug.Log("Judge: Duel Phase finished!");
     }
