@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class CardContainer : MonoBehaviour
 {
     [SerializeField] TurnManager.Users user;
     [SerializeField] List<Card> cardsSOInContainer = new List<Card>();
     [SerializeField] CardDummy cardDummy;
+    [SerializeField] TMP_Text cardsInContainer_TextComponent;
+    [SerializeField] string cardsInContainer_TextContent = "Cards:";
     [SerializeField] bool faceUpCards = false;
 
     bool isEmpty = false;
@@ -16,13 +18,18 @@ public class CardContainer : MonoBehaviour
     void Start()
     {
         if (!cardDummy) Debug.LogError("This Card Container " + gameObject.name + " doesn't have Card Dummy!");
+        if(!cardsInContainer_TextComponent) Debug.LogWarning("This Card Container " + gameObject.name + " doesn't have text module");
 
         CheckIfEmpty();
     }
 
     void CheckIfEmpty()
     {
-        if (cardsSOInContainer.Count == 0)
+        int cardsInContainer = cardsSOInContainer.Count;
+        if (cardsInContainer_TextComponent) cardsInContainer_TextComponent.text = cardsInContainer_TextContent + cardsInContainer.ToString();
+
+
+        if (cardsInContainer == 0)
         {
             isEmpty = true;
             cardDummy.gameObject.SetActive(false);
