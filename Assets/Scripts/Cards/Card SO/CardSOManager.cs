@@ -7,7 +7,7 @@ using System;
 public class CardSOManager : MonoBehaviour
 {
     public enum TargetType { OpponentFighter, OpponentBench, MyFighter, MyBench }
-    public enum DestroyType { Discard, Permanent, Capture }
+    public enum DestroyType { Discard, Permanent, Capture, NoGameplay }
 
     [Header("Debug Only")]
     [SerializeField] Card cardSO;
@@ -62,7 +62,7 @@ public class CardSOManager : MonoBehaviour
     {
         dmgBonus = bonus;
         Debug.Log(gameObject.name + " received bonus " + bonus + " from:" + supporter.name);
-        supporter.GetComponent<CardObjectManager>().DestroyThisCardObject();
+        supporter.GetComponent<CardObjectManager>().DestroyHandler(DestroyType.Permanent);
     }
 
     public void CompareFighters(int opponentHitpoints) // this method is only for War&Sacrifce
@@ -85,7 +85,7 @@ public class CardSOManager : MonoBehaviour
 
         if (destroyType == DestroyType.Permanent)
         {
-            COM.DestroyThisCardObject();
+            COM.DestroyHandler(destroyType);
             Debug.Log(gameObject.name + " permanently destroyed");
             return;
         }
@@ -95,7 +95,7 @@ public class CardSOManager : MonoBehaviour
             if (!targetDiscard) FindDiscards();
             targetDiscard.AddCardSOToContainer(cardSO);
             Debug.Log(gameObject.name + " captured");
-            COM.DestroyThisCardObject();
+            COM.DestroyHandler(destroyType);
             return;
         }
 
@@ -103,7 +103,7 @@ public class CardSOManager : MonoBehaviour
         if (!myDiscard) FindDiscards();
         myDiscard.AddCardSOToContainer(cardSO);
         Debug.Log(gameObject.name + " discarded");
-        COM.DestroyThisCardObject();
+        COM.DestroyHandler(destroyType);
     }
 
     private void FindDiscards()

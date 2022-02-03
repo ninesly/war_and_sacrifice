@@ -109,5 +109,10 @@ public class CardContainer : MonoBehaviour
     {
         return user;
     }
+    
+    public void SetGridLayout(bool state)
+    {
+        GetComponent<GridLayout>().enabled = state;
+    }
 
 }

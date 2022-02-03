@@ -71,11 +71,48 @@ public class CardObjectManager : MonoBehaviour
             if (!cardSOManager) cardSOManager = GetComponent<CardSOManager>();
             var cardSO = cardSOManager.GetCardSO();
             cardContainer.AddCardSOToContainer(cardSO);
-            DestroyThisCardObject();
+            DestroyHandler();
         }
     }
 
-    public void DestroyThisCardObject()
+    public void DestroyHandler(CardSOManager.DestroyType destroyType = CardSOManager.DestroyType.NoGameplay)
+    {
+        Animator myAnimator = GetComponent<Animator>();
+
+        if (destroyType == CardSOManager.DestroyType.Discard)
+        {
+            myAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+            if (userOfCard == TurnManager.Users.Player)
+            {
+                myAnimator.SetTrigger("PlayerDiscard");  
+            }
+            else
+            {
+                myAnimator.SetTrigger("EnemyDiscard");
+            }  
+
+        }
+
+        if (destroyType == CardSOManager.DestroyType.Permanent)
+        {
+            myAnimator.SetTrigger("Destroy");
+            DestroyThisCardObject();
+            return;
+        }
+
+        if (destroyType == CardSOManager.DestroyType.Capture)
+        {
+            // to implement
+            DestroyThisCardObject();
+            return;
+        }
+
+
+
+        DestroyThisCardObject();
+    }
+
+    void DestroyThisCardObject() // also triggered by animation
     {
         Destroy(gameObject);
     }

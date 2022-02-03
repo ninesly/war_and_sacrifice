@@ -150,7 +150,7 @@ MonoBehaviour:
   cardsSOInContainer: []
   cardDummy: {fileID: 774164461675821456}
   cardsInContainer_TextComponent: {fileID: 7324787995762498921}
-  cardsInContainer_TextContent: 'Cards in discard:'
+  cardsInContainer_TextContent: 'Cards in discard: '
   faceUpCards: 1
 --- !u!1001 &7833648509175507599
 PrefabInstance:
